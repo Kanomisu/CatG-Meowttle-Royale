@@ -1,4 +1,6 @@
 #include <iostream>
+#include "resources.h"
+
 using namespace std;
 /*
 This is our game for our firts GDW project!
@@ -26,11 +28,7 @@ void playGame() {
 	int playerPoints[5];
 	bool gameEnd = false;
 
-	while(!gameEnd)
+	while (!gameEnd) {
 
-
-
-
-
-
+	}
 }
