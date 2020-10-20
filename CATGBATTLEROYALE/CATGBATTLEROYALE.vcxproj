@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CATGBATTLEROYALE.cpp" />
+    <ClCompile Include="events.cpp" />
     <ClCompile Include="mainMenu.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -3,10 +3,10 @@
 
 using namespace std;
 /*
-This is our game for our firts GDW project!
+This is our game for our first GDW project!
 CATG Battle royale s textbased and in one file
 Date: 10/20/2020
-Authors: Ricardo Prato, Blahblahblah
+Authors: Ricardo Prato, Ryan Dinh, Timothy Loudon, Nathan Tyborski, Kieran Lockyer
 
 */
 
