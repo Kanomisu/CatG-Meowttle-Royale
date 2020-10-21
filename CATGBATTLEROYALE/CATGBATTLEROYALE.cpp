@@ -10,25 +10,78 @@ Authors: Ricardo Prato, Ryan Dinh, Timothy Loudon, Nathan Tyborski, Kieran Locky
 
 */
 
-void displayIntro();
 void playGame();
 
 int main()
 {
-	displayIntro();
+	system("Color 0A");
 	playGame();
 
 }
 
-void displayIntro() {
+void playGame() {
+//	int playerPoints[5];
+//	bool gameEnd = false;
+
+//	while (!gameEnd) {
+
+//	}
+
+
+	rollAnimation();
 
 }
 
-void playGame() {
-	int playerPoints[5];
-	bool gameEnd = false;
+void roll() {
 
-	while (!gameEnd) {
+}
 
+void turnStart() {
+	switch(p_Cur) {
+		case (0):
+			if (p_1_S) {
+				//player has been skipped
+				p_1_S = false;
+				endTurn();
+				break;
+			}
+			else {
+				roll();
+				break;
+			}
+			;
+		case (1):
+			if (p_2_S) {
+				//player has been skipped
+				p_2_S = false;
+				endTurn();
+				break;
+			}
+			else {
+				roll();
+				break;
+			}
+			;
+		case (2):
+			if (p_3_S) {
+				//player has been skipped
+				p_3_S = false;
+				endTurn();
+				break;
+			}
+			else {
+				roll();
+				break;
+			}
+			;
+	}
+}
+
+void endTurn() {
+	if (p_Cur >= p_Max) {
+		p_Cur = 0;
+	}
+	else {
+		p_Cur += 1;
 	}
 }
