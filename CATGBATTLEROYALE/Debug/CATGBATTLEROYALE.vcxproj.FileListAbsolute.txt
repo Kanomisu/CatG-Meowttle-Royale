@@ -1,2 +1,4 @@
 C:\Users\termi\Desktop\Ontario Tech\gdw1\CatG-Meowttle-Royale\CATGBATTLEROYALE\Debug\CATGBATTLEROYALE.exe
 C:\Users\termi\Desktop\Ontario Tech\gdw1\CatG-Meowttle-Royale\CATGBATTLEROYALE\Debug\CATGBATTLEROYALE.pdb
+C:\Users\Ryan Dinh\Desktop\Important\School\Y1\CatG-Meowttle-Royale\CatG-Meowttle-Royale\CATGBATTLEROYALE\Debug\CATGBATTLEROYALE.exe
+C:\Users\Ryan Dinh\Desktop\Important\School\Y1\CatG-Meowttle-Royale\CatG-Meowttle-Royale\CATGBATTLEROYALE\Debug\CATGBATTLEROYALE.pdb
