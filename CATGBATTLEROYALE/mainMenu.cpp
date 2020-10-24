@@ -3,12 +3,39 @@
 #include <conio.h>
 #include <windows.h>
 #include <cstdlib>
+using namespace std;
 
 HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE); //get console so you can use it in cords
 
 void help();
 void credits();
 void cords(int, int);
+
+
+void titleScreen() {
+	std::cout <<
+		"   _________  ____________                " << endl <<
+		"  / ____/   |/_  __/ ____/                " << endl <<
+		" / /   / /| | / / / / __(_)               " << endl <<
+		"/ /___/ ___ |/ / / /_/ /                  " << endl <<
+		"\\____/_/  |_/_/__\\____(_)____    ______   " << endl <<
+		"   / __ )/   |/_  __/_  __/ /   / ____/   " << endl <<
+		"  / __  / /| | / /   / / / /   / __/      " << endl <<
+		" / /_/ / ___ |/ /   / / / /___/ /___      " << endl <<
+		"/_____/_/ _|_/_/  _/_/_/_____/_____/___   " << endl <<
+		"   / __ \\/ __ \\ \\/ /   |  / /   / ____/   " << endl <<
+		"  / /_/ / / / /\\  / /| | / /   / __/      " << endl <<
+		" / _, _/ /_/ / / / ___ |/ /___/ /___      " << endl <<
+		"/_/ |_|\\____/ /_/_/  |_/_____/_____/      " << endl;
+
+	std::cout << "Press any button to continue!";
+	int input = _getch();
+	if (input == 0xE0)
+	{
+		input = _getch();
+	}
+	menu();
+}
 
 void menu()
 {
@@ -61,6 +88,13 @@ void menu()
 		if (y == 0) //first item on menu
 		{
 			//start game
+			//playerSelect();
+			//break;
+			{
+				running = false; //ends menu
+			}
+			system("CLS");
+			input = ' ';
 		}
 
 		if (y == 2)
@@ -75,11 +109,10 @@ void menu()
 		*/
 		if (y == 4)
 		{
-			running = false; //ends menu
+			system("CLS");
+			break;
 		}
-		system("CLS");
-		y = 2;
-		input = ' ';
+		
 	}
 }
 

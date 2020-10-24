@@ -14,26 +14,27 @@ Authors: Ricardo Prato, Ryan Dinh, Timothy Loudon, Nathan Tyborski, Kieran Locky
 
 void setWindow(int, int);
 void playGame();
+void playerSelect();
 
 int main()
 {
 	setWindow(110, 40);
 	system("Color 0A");
-	menu();
-	//playGame();
+	titleScreen();
+	playerSelect();
+	playGame();
 	return 0;
 }
 
 void playGame() {
-//	int playerPoints[5];
-//	bool gameEnd = false;
-
-//	while (!gameEnd) {
-
+	bool gameEnd = false;
+	int counter = 1;
+//	while (!gameEnd) 
+	//currentBoard();
+	rollAnimation();
 //	}
 
 
-	rollAnimation();
 
 }
 
@@ -105,5 +106,64 @@ void endTurn() {
 	}
 	else {
 		p_Cur += 1;
+	}
+}
+
+void playerSelect()
+{
+	int selection;
+	for (int i = 0; i <= p_Max; i++)
+	{
+		system("CLS");
+		cords(0, 0);
+		cout << "Choose thine mighty warrior that you shall fight with, player " << i+1;
+
+		cords(50, 7);
+		cout << "Geralt of Meowvia (Atk: 4, Res: 3, HP: 3, Luck: 1)";
+
+		cords(50, 9);
+		cout << "Myu, the destroyer (Atk: 3, Res: 2, HP: 4, Luck: 1)";
+
+		cords(50, 11);
+		cout << "Beebus the great wizard (Atk: 2, Res: 3, HP: 4, Luck: 1)";
+
+		cin >> selection;
+
+		switch (selection)
+		{
+		case 1:
+			p_S_A[i] = 4;
+			p_S_V[i] = 3;
+			p_S_R[i] = 3;
+			p_S_L[i] = 1;
+			p_Max_Health[i] = 3;
+			p_Health[i] = 3;
+			break;
+		case 2:
+			p_S_A[i] = 3;
+			p_S_V[i] = 4;
+			p_S_R[i] = 2;
+			p_S_L[i] = 1;
+			p_Max_Health[i] = 4;
+			p_Health[i] = 4;
+			break;
+		case 3:
+			p_S_A[i] = 2;
+			p_S_V[i] = 4;
+			p_S_R[i] = 3;
+			p_S_L[i] = 1;
+			p_Max_Health[i] = 4;
+			p_Health[i] = 4;
+			break;
+		default:
+			p_S_A[i] = 100;
+			p_S_V[i] = 100;
+			p_S_R[i] = 100;
+			p_S_L[i] = 100;
+			p_Max_Health[i] = 100;
+			p_Health[i] = 100;
+			break;
+		}
+
 	}
 }

@@ -21,6 +21,10 @@ extern bool p_3_S;
 
 extern int rNum; //Random Number
 
+void titleScreen();
 void menu();
 void endTurn();
 void rollAnimation();
+void cords(int x, int y);
+void playerSelect();
+void currentBoard();
