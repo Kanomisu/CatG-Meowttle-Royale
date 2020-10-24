@@ -7,6 +7,14 @@
 
 int backSpace[10] = { 0,2,5,7,10,15,20,50,58,69 };
 int forwardSpace[10] = { 1,3,6,8,11,16,21,51,59,70 };
+int eventSpace[3] = { 4,9,12 };
+
+int pickedNum[3] = { 0,0,0 }; //sell soul number picked
+
+bool ranSellSoul = false;
+
+int response = 0;
+
 /*
 int restSpace[1] = { 2 };
 int fatigueSpace[1] = { 12 };
@@ -26,95 +34,59 @@ int rNum = 0;
 
 
 void eventRandomizor() {
-    
+    rNum = rand() % 6;
+    switch(rNum) {
+    case(0):
+        back();
+        break;
+        ;
+    case(1):
+        forward();
+        break;
+        ;
+    case(2):
+        rest();
+        break;
+        ;
+    case(3):
+        fatigue();
+        break;
+        ;
+    case(4):
+        battle();
+        break;
+        ;
+    case(5):
+        gamble();
+        break;
+        ;
+    }
 }
 
 void back() {
-    switch (p_Cur) {
-    case (0):
-        if (p_Pos[0] >= 3) {
-            p_Pos[0] -= 3;
-        }
-        else {
-            p_Pos[0] = 0;
-        }
-        break;
-        ;
-    case (1):
-        if (p_Pos[1] >= 3) {
-            p_Pos[1] -= 3;
-        }
-        else {
-            p_Pos[1] = 0;
-        }
-        ;
-    case (2):
-        if (p_Pos[2] >= 3) {
-            p_Pos[2] -= 3;
-        }
-        else {
-            p_Pos[2] = 0;
-        }
-        ;
+    if (p_Pos[p_Cur] >= 3) {
+        p_Pos[p_Cur] -= 3;
+    }
+    else {
+        p_Pos[p_Cur] = 0;
     }
 }
 
 void forward() {
-    switch (p_Cur) {
-    case (0):
-        p_Pos[0] += 3;
-        break;
-        ;
-    case (1):
-        p_Pos[1] += 3;
-        break;
-        ;
-    case (2):
-        p_Pos[2] += 3;
-        break;
-        ;
-    }
+    p_Pos[p_Cur] += 3;
 }
 
 void rest() {
-    switch (p_Cur) {
-    case (0):
-        p_Skipped[p_Cur] = true;
-        p_Health[0] = p_Max_Health[0];
-        break;
-        ;
-    case (1):
-        p_Skipped[p_Cur] = true;
-        p_Health[1] = p_Max_Health[1];
-        break;
-        ;
-    case (2):
-        p_Skipped[p_Cur] = true;
-        p_Health[2] = p_Max_Health[2];
-        break;
-        ;
-    }
+    p_Skipped[p_Cur] = true;
+    p_S_V[p_Cur] = true;
 }
 
 void fatigue() {
-	switch (p_Cur) {
-	case (0):
-        p_Skipped[p_Cur] = true;
-		break;
-		;
-	case (1):
-        p_Skipped[p_Cur] = true;
-		break;
-		;
-	case (2):
-        p_Skipped[p_Cur] = true;
-        break;
-		;
-	}
+    p_Skipped[p_Cur] = true;
 }
 
 void gamble() {
-
+    std::cout << "Pick a stat you would like to improve. \n 1. Attack \n2. Vitality \n3. Resistance \n4. Luck";
 }
 
 void battle() {
@@ -122,32 +94,166 @@ void battle() {
 }
 
 void sellSoul() {
+    if (!ranSellSoul) {
+        if (p_Pos[0] >= 45 && p_Pos[1] >= 45 && p_Pos[2] >= 45) {
+            if (p_Cur == 0) {
+                if (p_Pos[0] < p_Pos[1] && p_Pos[0] < p_Pos[2]) {
+                    ranSellSoul = true;
+                }
+            }
+            else if (p_Cur == 1) {
+                if (p_Pos[1] < p_Pos[0] && p_Pos[1] < p_Pos[2]) {
+                    ranSellSoul = true;
+                }
+            }
+            else if (p_Cur == 2) {
+                if (p_Pos[2] < p_Pos[0] && p_Pos[2] < p_Pos[1]) {
+                    ranSellSoul = true;
+                }
+            }
+        }
+    }
+}
 
+void soulDia() {
+    system("CLS");
+    std::cout << "[DEVIL] Hello there player " << p_Cur + 1 << " it seems like you are in need of help... How about I propose an offer you can't resist! If you are able to correctly guess an opponent's number you shall receive half of the other players stats in exchange for doubling any negative actions that happen to you.\n\n 1. Yes \n 2. No";
+    std::cin >> response;
+    if (response == 1) {
+        p_SellSoul[p_Cur] = 1;
+        system("CLS");
+        std::cout << "Player 1 please input a number\n";
+        std::cin >> pickedNum[0];
+        system("CLS");
+        std::cout << "Player 2 please input a number\n";
+        std::cin >> pickedNum[1];
+        system("CLS");
+        std::cout << "Player 3 please input a number\n";
+        std::cin >> pickedNum[2];
+
+        if (p_Cur == 0) {
+            if (pickedNum[0] == pickedNum[1] || pickedNum[0] == pickedNum[2]) {
+                std::cout << "Player 1 has successfully guessed the correct number!";
+                p_S_A[0] += (p_S_A[1] / 2);
+                p_S_A[1] = (p_S_A[1] / 2);
+
+                p_S_A[0] += (p_S_A[2] / 2);
+                p_S_A[2] = (p_S_A[2] / 2);
+
+
+                p_S_V[0] += (p_S_V[1] / 2);
+                p_S_V[1] = (p_S_V[1] / 2);
+
+                p_S_V[0] += (p_S_V[2] / 2);
+                p_S_V[2] = (p_S_V[2] / 2);
+
+
+                p_S_R[0] += (p_S_R[1] / 2);
+                p_S_R[1] = (p_S_R[1] / 2);
+
+                p_S_R[0] += (p_S_R[2] / 2);
+                p_S_R[2] = (p_S_R[2] / 2);
+
+
+                p_S_L[0] += (p_S_L[1] / 2);
+                p_S_L[1] = (p_S_L[1] / 2);
+
+                p_S_L[0] += (p_S_L[2] / 2);
+                p_S_L[2] = (p_S_L[2] / 2);
+            }
+            else {
+                std::cout << "Player 1 has failed to guess the correct number!";
+            }
+        }
+        else if (p_Cur == 1) {
+            if (pickedNum[1] == pickedNum[0] || pickedNum[1] == pickedNum[2]) {
+                std::cout << "Player 1 has successfully guessed the correct number!";
+                p_S_A[1] += (p_S_A[0] / 2);
+                p_S_A[0] = (p_S_A[0] / 2);
+
+                p_S_A[1] += (p_S_A[2] / 2);
+                p_S_A[2] = (p_S_A[2] / 2);
+
+
+                p_S_V[1] += (p_S_V[0] / 2);
+                p_S_V[0] = (p_S_V[0] / 2);
+
+                p_S_V[1] += (p_S_V[2] / 2);
+                p_S_V[2] = (p_S_V[2] / 2);
+
+
+                p_S_R[1] += (p_S_R[0] / 2);
+                p_S_R[0] = (p_S_R[0] / 2);
+
+                p_S_R[1] += (p_S_R[2] / 2);
+                p_S_R[2] = (p_S_R[2] / 2);
+
+
+                p_S_L[1] += (p_S_L[0] / 2);
+                p_S_L[0] = (p_S_L[0] / 2);
+
+                p_S_L[1] += (p_S_L[2] / 2);
+                p_S_L[2] = (p_S_L[2] / 2);
+            }
+            else {
+                std::cout << "Player 2 has failed to guess the correct number!";
+            }
+        }
+        else if (p_Cur == 2) {
+            if (pickedNum[2] == pickedNum[0] || pickedNum[2] == pickedNum[1]) {
+                std::cout << "Player 1 has successfully guessed the correct number!";
+                p_S_A[2] += (p_S_A[1] / 2);
+                p_S_A[1] = (p_S_A[1] / 2);
+
+                p_S_A[2] += (p_S_A[0] / 2);
+                p_S_A[0] = (p_S_A[0] / 2);
+
+
+                p_S_V[2] += (p_S_V[1] / 2);
+                p_S_V[1] = (p_S_V[1] / 2);
+
+                p_S_V[2] += (p_S_V[0] / 2);
+                p_S_V[0] = (p_S_V[0] / 2);
+
+
+                p_S_R[2] += (p_S_R[1] / 2);
+                p_S_R[1] = (p_S_R[1] / 2);
+
+                p_S_R[2] += (p_S_R[0] / 2);
+                p_S_R[0] = (p_S_R[0] / 2);
+
+
+                p_S_L[2] += (p_S_L[1] / 2);
+                p_S_L[1] = (p_S_L[1] / 2);
+
+                p_S_L[2] += (p_S_L[0] / 2);
+                p_S_L[0] = (p_S_L[0] / 2);
+            }
+            else {
+                std::cout << "Player 3 has failed to guess the correct number!";
+            }
+        }
+
+    }
+    else {
+        std::cout << "[DEVIL] You will regret not taking my deal!";
+    }
 }
 
 void currentBoard() {
-    //display whatever
-
-    //Player: 1/2/3
-    //Space: X
-    //Stats: 
-        //Health:
-        //Strength:
-        //Vitatlity:
-        //Luck::
-        //Etc.
+    system("CLS");
     std::cout << "Current Turn: Player " << p_Cur << "\n" <<
         "Space: " << p_Pos[p_Cur] << "\n" << 
         "HP: " << p_S_V[p_Cur] << "/" << p_Max_Health[p_Cur] << "\n" <<
-        "Attack: " << p_S_A << "\n" << "Resistance: " << p_S_R << "\n" <<
-        "Luck: " << p_S_L << "\n";
+        "Attack: " << p_S_A[p_Cur] << "\n" << "Resistance: " << p_S_R[p_Cur] << "\n" <<
+        "Luck: " << p_S_L[p_Cur] << "\n";
 }
 
 int random() {
-    return srand((unsigned int)time(NULL)) % 5 + 1;
+    return rand() % 5 + 1;
 }
 
-void rollAnimation() {
+int rollAnimation() {
     for (int i = 0; i <= 20; ++i) {
         rNum = random();
         std::system("cls");
@@ -166,19 +272,12 @@ void checkSpace(int space) {
     else if (std::any_of(std::begin(forwardSpace), std::end(forwardSpace), [=](int n) {return n == space;})) {
         forward();
     }
-    /*
-    else if (std::any_of(std::begin(restSpace), std::end(restSpace), [=](int n) {return n == space;})) {
-        rest();
+    else if (std::any_of(std::begin(eventSpace), std::end(eventSpace), [=](int n) {return n == space;})) {
+        eventRandomizor();
     }
-    else if (std::any_of(std::begin(fatigueSpace), std::end(fatigueSpace), [=](int n) {return n == space;})) {
-        fatigue();
-    }
-    else if (std::any_of(std::begin(gambleSpace), std::end(gambleSpace), [=](int n) {return n == space;})) {
-        gamble();
-    }
-    else if (std::any_of(std::begin(battleSpace), std::end(battleSpace), [=](int n) {return n == space;})) {
-        battle();
-    }
-    */
+
+}
+
+void winConditions() {
 
 }

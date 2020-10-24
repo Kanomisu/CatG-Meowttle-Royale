@@ -66,47 +66,11 @@ void roll() {
 }
 
 void turnStart() {
-	switch(p_Cur) {
-		case (0):
-			if (p_Skipped[p_Cur]){
-				//player has been skipped
-				p_Skipped[p_Cur] = false;
-				endTurn();
-				break;
-			}
-			else {
-				//roll();
-				currentBoard();
-				break;
-			}
-			;
-		case (1):
-			if (p_Skipped[p_Cur]) {
-				//player has been skipped
-				p_Skipped[p_Cur] = false;
-				endTurn();
-				break;
-			}
-			else {
-				//roll();
-				currentBoard();
-				break;
-			}
-			;
-		case (2):
-			if (p_Skipped[p_Cur]) {
-				//player has been skipped
-				p_Skipped[p_Cur] = false;
-				endTurn();
-				break;
-			}
-			else {
-				//roll();
-				currentBoard();
-				break;
-			}
-			;
+	if (p_Skipped[p_Cur] == true) {
+		p_Skipped[p_Cur] = false;
+		endTurn();
 	}
+	
 }
 
 void endTurn() {
@@ -134,7 +98,7 @@ void playerSelect()
 		cout << "2. Myu, the destroyer (Atk: 3, Res: 2, HP: 4, Luck: 1)";
 
 		cords(50, 11);
-		cout << "3. Beebus the great wizard (Atk: 2, Res: 3, HP: 4, Luck: 1)";
+		cout << "3. Beebus the great wizard (Atk: 2, Res: 3, HP: 4, Luck: 1)\n\n";
 
 		cin >> selection;
 
@@ -145,32 +109,32 @@ void playerSelect()
 			p_S_V[i] = 3;
 			p_S_R[i] = 3;
 			p_S_L[i] = 1;
-			p_Max_Health[i] = 3;
 			p_Health[i] = 3;
+			p_S_V[i] = 3;
 			break;
 		case 2:
 			p_S_A[i] = 3;
 			p_S_V[i] = 4;
 			p_S_R[i] = 2;
 			p_S_L[i] = 1;
-			p_Max_Health[i] = 4;
-			p_Health[i] = 4;
+			p_Health[i] = 3;
+			p_S_V[i] = 3;
 			break;
 		case 3:
 			p_S_A[i] = 2;
 			p_S_V[i] = 4;
 			p_S_R[i] = 3;
 			p_S_L[i] = 1;
-			p_Max_Health[i] = 4;
-			p_Health[i] = 4;
+			p_Health[i] = 3;
+			p_S_V[i] = 3;
 			break;
 		default:
 			p_S_A[i] = 100;
 			p_S_V[i] = 100;
 			p_S_R[i] = 100;
 			p_S_L[i] = 100;
-			p_Max_Health[i] = 100;
-			p_Health[i] = 100;
+			p_Health[i] = 3;
+			p_S_V[i] = 3;
 			break;
 		}
 
