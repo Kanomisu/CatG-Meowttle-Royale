@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="board.cpp" />
     <ClCompile Include="CATGBATTLEROYALE.cpp" />
     <ClCompile Include="events.cpp" />
     <ClCompile Include="mainMenu.cpp" />

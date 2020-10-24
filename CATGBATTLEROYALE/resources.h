@@ -3,7 +3,7 @@
 //Info about each int is in Stats.cpp
 
 extern int p_Max;
-extern int p_Max_Health[];
+//extern int p_Max_Health[];
 
 extern int p_Cur;
 
@@ -20,6 +20,7 @@ extern bool p_2_S;
 extern bool p_3_S;
 */
 extern bool p_Skipped[];
+extern bool p_Finished[];
 
 extern int rNum; //Random Number
 
@@ -30,3 +31,4 @@ int rollAnimation();
 void cords(int x, int y);
 void playerSelect();
 void currentBoard();
+void checkSpace(int cSpace);

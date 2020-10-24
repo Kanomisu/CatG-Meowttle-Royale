@@ -2,12 +2,13 @@
 #include <cstdlib>
 #include <windows.h>
 #include "resources.h"
+#include <conio.h>
 
 using namespace std;
 
 /*
 This is our game for our first GDW project!
-CATG Battle royale s textbased and in one file
+CATG Battle royale is textbased rpg!
 Date: 10/20/2020
 Authors: Ricardo Prato, Ryan Dinh, Timothy Loudon, Nathan Tyborski, Kieran Lockyer
 */
@@ -15,6 +16,8 @@ Authors: Ricardo Prato, Ryan Dinh, Timothy Loudon, Nathan Tyborski, Kieran Locky
 void setWindow(int, int);
 void playGame();
 void playerSelect();
+void roll();
+void turnStart();
 
 int main()
 {
@@ -28,13 +31,13 @@ int main()
 
 void playGame() {
 	bool gameEnd = false;
-	//while (!gameEnd)
-	//{
-		//turnStart();
-		//move();
-		//checkIfLandedOnSpace();
-		//doEvent();
-	//}
+	while (!gameEnd)
+	{
+		turnStart();
+		roll();
+		checkSpace(p_Pos[p_Cur]);
+		endTurn();
+	}
 
 
 
@@ -59,10 +62,24 @@ void setWindow(int Width, int Height)
 
 void roll() {
 	int amtMove;
+	std::cout << "Press any button to roll!!!";
+	int input = _getch();
+	if (input == 0xE0)
+	{
+		input = _getch();
+	}
+
 	amtMove = rollAnimation();
-	cout << "You rolled a " << amtMove << endl;
+	cout << "\nYou rolled a " << amtMove << endl;
 	p_Pos[p_Cur] += amtMove;
-	cout << "Player " << p_Cur + 1 << " is now at " << p_Pos;
+	Sleep(25);
+	if (p_Pos[p_Cur] >= 91) 
+	{
+		p_Pos[p_Cur] = 91;
+		cout << "Congratulations, you have completed the board!!!";
+
+	}
+	cout << "Player " << p_Cur + 1 << " is now at space " << p_Pos[p_Cur] << endl;
 }
 
 void turnStart() {
@@ -73,6 +90,10 @@ void turnStart() {
 				p_Skipped[p_Cur] = false;
 				endTurn();
 				break;
+			}
+			else if (p_Finished[p_Cur]) 
+			{
+				cout << "Player " << p_Cur << " has finsihed the board, proceeding to the next player...";
 			}
 			else {
 				//roll();
@@ -87,6 +108,10 @@ void turnStart() {
 				endTurn();
 				break;
 			}
+			else if (p_Finished[p_Cur])
+			{
+				cout << "Player " << p_Cur << " has finsihed the board, proceeding to the next player...";
+			}
 			else {
 				//roll();
 				currentBoard();
@@ -100,16 +125,27 @@ void turnStart() {
 				endTurn();
 				break;
 			}
+			else if (p_Finished[p_Cur])
+			{
+				cout << "Player " << p_Cur << " has finsihed the board, proceeding to the next player...";
+			}
 			else {
 				//roll();
 				currentBoard();
 				break;
 			}
-			;
 	}
 }
 
 void endTurn() {
+	cout << "Press any button to end your turn:";
+
+	int input = _getch();
+	if (input == 0xE0)
+	{
+		input = _getch();
+	}
+	std::system("cls");
 	if (p_Cur >= p_Max) {
 		p_Cur = 0;
 	}
@@ -145,7 +181,7 @@ void playerSelect()
 			p_S_V[i] = 3;
 			p_S_R[i] = 3;
 			p_S_L[i] = 1;
-			p_Max_Health[i] = 3;
+			//p_Max_Health[i] = 3;
 			p_Health[i] = 3;
 			break;
 		case 2:
@@ -153,7 +189,7 @@ void playerSelect()
 			p_S_V[i] = 4;
 			p_S_R[i] = 2;
 			p_S_L[i] = 1;
-			p_Max_Health[i] = 4;
+			//p_Max_Health[i] = 4;
 			p_Health[i] = 4;
 			break;
 		case 3:
@@ -161,7 +197,7 @@ void playerSelect()
 			p_S_V[i] = 4;
 			p_S_R[i] = 3;
 			p_S_L[i] = 1;
-			p_Max_Health[i] = 4;
+			//p_Max_Health[i] = 4;
 			p_Health[i] = 4;
 			break;
 		default:
@@ -169,10 +205,11 @@ void playerSelect()
 			p_S_V[i] = 100;
 			p_S_R[i] = 100;
 			p_S_L[i] = 100;
-			p_Max_Health[i] = 100;
+			//p_Max_Health[i] = 100;
 			p_Health[i] = 100;
 			break;
 		}
 
 	}
+	system("cls");
 }

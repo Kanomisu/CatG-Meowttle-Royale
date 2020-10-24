@@ -3,14 +3,20 @@
 #include <iostream>
 #include <windows.h>
 
-int backSpace[10] = { 0,2,5,7,10,15,20,50,58,69 };
-int forwardSpace[10] = { 1,3,6,8,11,16,21,51,59,70 };
+//int backSpace[10] = { 0,2,5,7,10,15,20,50,58,69 };
+//int forwardSpace[10] = { 1,3,6,8,11,16,21,51,59,70 };
 /*
 int restSpace[1] = { 2 };
 int fatigueSpace[1] = { 12 };
 int gambleSpace[1] = { 4 };
 int battleSpace[1] = { 9 };
 */
+
+int backSpace[8] = { 6, 18, 30, 42, 56, 68, 80, 90 };
+int forwardSpace[8] = { 2, 12, 24, 36, 48, 60, 72, 84 };
+int eventSpace[22] = { 3, 7, 11, 15, 19, 23, 27, 31, 35, 39, 43, 47, 51, 55, 59, 63, 67, 71, 75, 79, 83, 87 };
+
+
 
 int rNum = 0;
 
@@ -78,17 +84,17 @@ void rest() {
     switch (p_Cur) {
     case (0):
         p_Skipped[p_Cur] = true;
-        p_Health[0] = p_Max_Health[0];
+        p_Health[0] = p_S_V[0];
         break;
         ;
     case (1):
         p_Skipped[p_Cur] = true;
-        p_Health[1] = p_Max_Health[1];
+        p_Health[1] = p_S_V[1];
         break;
         ;
     case (2):
         p_Skipped[p_Cur] = true;
-        p_Health[2] = p_Max_Health[2];
+        p_Health[2] = p_S_V[2];
         break;
         ;
     }
@@ -134,11 +140,11 @@ void currentBoard() {
         //Vitatlity:
         //Luck::
         //Etc.
-    std::cout << "Current Turn: Player " << p_Cur << "\n" <<
+    std::cout << "Current Turn: Player " << p_Cur + 1 << "\n" <<
         "Space: " << p_Pos[p_Cur] << "\n" << 
-        "HP: " << p_S_V[p_Cur] << "/" << p_Max_Health[p_Cur] << "\n" <<
-        "Attack: " << p_S_A << "\n" << "Resistance: " << p_S_R << "\n" <<
-        "Luck: " << p_S_L << "\n";
+        "HP: " << p_Health[p_Cur] << "/" << p_S_V[p_Cur] << "\n" <<
+        "Attack: " << p_S_A[p_Cur] << "\n" << "Resistance: " << p_S_R[p_Cur] << "\n" <<
+        "Luck: " << p_S_L[p_Cur] << "\n";
 }
 
 int random() {
@@ -158,25 +164,15 @@ int rollAnimation() {
 }
 
 void checkSpace(int space) {
-    if (std::any_of(std::begin(backSpace), std::end(backSpace), [=](int n) {return n == space;})) {
+    if (std::any_of(std::begin(backSpace), std::end(backSpace), [=](int n) {return n == space; })) {
+
         back();
     }
-    else if (std::any_of(std::begin(forwardSpace), std::end(forwardSpace), [=](int n) {return n == space;})) {
+    else if (std::any_of(std::begin(forwardSpace), std::end(forwardSpace), [=](int n) {return n == space; })) {
         forward();
     }
-    /*
-    else if (std::any_of(std::begin(restSpace), std::end(restSpace), [=](int n) {return n == space;})) {
-        rest();
+    else if (std::any_of(std::begin(eventSpace), std::end(eventSpace), [=](int n) {return n == space; })) {
+        eventRandomizor();
     }
-    else if (std::any_of(std::begin(fatigueSpace), std::end(fatigueSpace), [=](int n) {return n == space;})) {
-        fatigue();
-    }
-    else if (std::any_of(std::begin(gambleSpace), std::end(gambleSpace), [=](int n) {return n == space;})) {
-        gamble();
-    }
-    else if (std::any_of(std::begin(battleSpace), std::end(battleSpace), [=](int n) {return n == space;})) {
-        battle();
-    }
-    */
 
 }

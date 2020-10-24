@@ -3,7 +3,7 @@
 int p_Max = 2; //Max amount of players - 1
 //int p_Max_Health[3] = {100,100,100};
 
-int p_Cur = 0; //Current player (p1 = 0, p2 = 1, p3 = 3)
+int p_Cur = 0; //Current player (p1 = 0, p2 = 1, p3 = 2)
 
 int p_Pos[3] = { 0,0,0 };   //player current postion on the board
 int p_S_A[3] = { 0,0,0 }; //player attack stat
@@ -14,6 +14,8 @@ int p_S_L[3] = { 0,0,0 }; //player luck stat
 int p_Health[3] = { 100,100,100 }; //player health
 
 bool p_Skipped[3] = { false, false, false }; //Skip next turn of current player
+
+bool p_Finished[3] = { false, false, false }; //Inicator when the player has finished the board.
 
 /*
 bool p_1_S = false; //Skip next turn of P1
