@@ -28,11 +28,13 @@ int main()
 
 void playGame() {
 	bool gameEnd = false;
-	int counter = 1;
-//	while (!gameEnd) 
-	//currentBoard();
-	rollAnimation();
-//	}
+	//while (!gameEnd)
+	//{
+		//turnStart();
+		//move();
+		//checkIfLandedOnSpace();
+		//doEvent();
+	//}
 
 
 
@@ -56,44 +58,51 @@ void setWindow(int Width, int Height)
 }
 
 void roll() {
-
+	int amtMove;
+	amtMove = rollAnimation();
+	cout << "You rolled a " << amtMove << endl;
+	p_Pos[p_Cur] += amtMove;
+	cout << "Player " << p_Cur + 1 << " is now at " << p_Pos;
 }
 
 void turnStart() {
 	switch(p_Cur) {
 		case (0):
-			if (p_1_S) {
+			if (p_Skipped[p_Cur]){
 				//player has been skipped
-				p_1_S = false;
+				p_Skipped[p_Cur] = false;
 				endTurn();
 				break;
 			}
 			else {
-				roll();
+				//roll();
+				currentBoard();
 				break;
 			}
 			;
 		case (1):
-			if (p_2_S) {
+			if (p_Skipped[p_Cur]) {
 				//player has been skipped
-				p_2_S = false;
+				p_Skipped[p_Cur] = false;
 				endTurn();
 				break;
 			}
 			else {
-				roll();
+				//roll();
+				currentBoard();
 				break;
 			}
 			;
 		case (2):
-			if (p_3_S) {
+			if (p_Skipped[p_Cur]) {
 				//player has been skipped
-				p_3_S = false;
+				p_Skipped[p_Cur] = false;
 				endTurn();
 				break;
 			}
 			else {
-				roll();
+				//roll();
+				currentBoard();
 				break;
 			}
 			;
@@ -105,7 +114,7 @@ void endTurn() {
 		p_Cur = 0;
 	}
 	else {
-		p_Cur += 1;
+		p_Cur ++;
 	}
 }
 
@@ -119,13 +128,13 @@ void playerSelect()
 		cout << "Choose thine mighty warrior that you shall fight with, player " << i+1;
 
 		cords(50, 7);
-		cout << "Geralt of Meowvia (Atk: 4, Res: 3, HP: 3, Luck: 1)";
+		cout << "1. Geralt of Meowvia (Atk: 4, Res: 3, HP: 3, Luck: 1)";
 
 		cords(50, 9);
-		cout << "Myu, the destroyer (Atk: 3, Res: 2, HP: 4, Luck: 1)";
+		cout << "2. Myu, the destroyer (Atk: 3, Res: 2, HP: 4, Luck: 1)";
 
 		cords(50, 11);
-		cout << "Beebus the great wizard (Atk: 2, Res: 3, HP: 4, Luck: 1)";
+		cout << "3. Beebus the great wizard (Atk: 2, Res: 3, HP: 4, Luck: 1)";
 
 		cin >> selection;
 

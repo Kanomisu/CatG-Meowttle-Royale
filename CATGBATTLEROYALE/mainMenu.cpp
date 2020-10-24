@@ -102,7 +102,7 @@ void menu()
 			help();
 		}
 		/*
-		if (y == 4)
+		if (y == 3)
 		{
 			Settings();   //Maybe add settings on menu to set variables, etc.
 		}
