@@ -14,6 +14,7 @@ int pickedNum[3] = { 0,0,0 }; //sell soul number picked
 bool ranSellSoul = false;
 
 int response = 0;
+int gamNum = 0;
 
 /*
 int restSpace[1] = { 2 };
@@ -31,6 +32,10 @@ int rNum = 0;
 //gamble   5
 //battle   6
 
+
+int random() {
+    return rand() % 5 + 1;
+}
 
 
 void eventRandomizor() {
@@ -86,11 +91,71 @@ void fatigue() {
 }
 
 void gamble() {
-    std::cout << "Pick a stat you would like to improve. \n 1. Attack \n2. Vitality \n3. Resistance \n4. Luck";
+    system("CLS");
+    currentBoard();
+    std::cout << "Pick a stat you would like to improve. \n 1. Attack \n2. Vitality \n3. Resistance \n4. Luck\n";
+    std::cin >> response;
+    std::cout << "\nPick 1 or 2\n";
+    std::cin >> gamNum;
+    rNum = rand() % 2 + 1;
+    if (rNum == gamNum) {
+        switch (response) {
+        case(1):
+            p_S_A[p_Cur] += 1;
+            break;
+            ;
+        case(2):
+            p_S_V[p_Cur] += 1;
+            break;
+            ;
+        case(3):
+            p_S_R[p_Cur] += 1;
+            break;
+            ;
+        case(4):
+            p_S_L[p_Cur] -= 1;
+            break;
+            ;
+        }
+    }
+    else {
+        switch (response) {
+        case(1):
+            p_S_A[p_Cur] -= 1;
+            break;
+            ;
+        case(2):
+            p_S_V[p_Cur] -= 1;
+            break;
+            ;
+        case(3):
+            p_S_R[p_Cur] -= 1;
+            break;
+            ;
+        case(4):
+            p_S_L[p_Cur] -= 1;
+            break;
+            ;
+        }
+    }
 }
 
 void battle() {
+    system("CLS");
+    currentBoard();
+    std::cout << "\n\nYou came across some sort of creature!\n\nWhat would you like to do?\n1. Fight \n2. Flee\n";
+    std::cin >> response;
+    if (response == 1) {
+        if (p_SellSoul[p_Cur] == 1) {
 
+        }
+        else {
+
+        }
+    }
+    else {
+        std::cout << "\n\nYou cowarded behind a rock...";
+    }
 }
 
 void sellSoul() {
@@ -117,7 +182,7 @@ void sellSoul() {
 
 void soulDia() {
     system("CLS");
-    std::cout << "[DEVIL] Hello there player " << p_Cur + 1 << " it seems like you are in need of help... How about I propose an offer you can't resist! If you are able to correctly guess an opponent's number you shall receive half of the other players stats in exchange for doubling any negative actions that happen to you.\n\n 1. Yes \n 2. No";
+    std::cout << "\n\n[DEVIL] Hello there player " << p_Cur + 1 << " it seems like you are in need of help... How about I propose an offer you can't resist! If you are able to correctly guess an opponent's number you shall receive half of the other players stats in exchange for doubling any negative actions that happen to you.\n\n 1. Yes \n 2. No";
     std::cin >> response;
     if (response == 1) {
         p_SellSoul[p_Cur] = 1;
@@ -247,10 +312,6 @@ void currentBoard() {
         "HP: " << p_S_V[p_Cur] << "/" << p_Max_Health[p_Cur] << "\n" <<
         "Attack: " << p_S_A[p_Cur] << "\n" << "Resistance: " << p_S_R[p_Cur] << "\n" <<
         "Luck: " << p_S_L[p_Cur] << "\n";
-}
-
-int random() {
-    return rand() % 5 + 1;
 }
 
 int rollAnimation() {

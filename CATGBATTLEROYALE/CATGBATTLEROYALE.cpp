@@ -70,7 +70,7 @@ void turnStart() {
 		p_Skipped[p_Cur] = false;
 		endTurn();
 	}
-	
+	sellSoul(); //checks if we should ask to sell soul
 }
 
 void endTurn() {

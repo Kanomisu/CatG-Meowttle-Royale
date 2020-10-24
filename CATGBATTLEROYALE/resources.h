@@ -32,5 +32,6 @@ int rollAnimation();
 void cords(int x, int y);
 void playerSelect();
 void currentBoard();
+void sellSoul();
 
 extern int backSpace[];
