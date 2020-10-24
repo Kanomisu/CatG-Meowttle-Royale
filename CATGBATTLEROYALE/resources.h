@@ -14,17 +14,19 @@ extern int p_S_R[];
 extern int p_S_L[];
 
 extern int p_Health[];
-
+/*
 extern bool p_1_S;
 extern bool p_2_S;
 extern bool p_3_S;
+*/
+extern bool p_Skipped[];
 
 extern int rNum; //Random Number
 
 void titleScreen();
 void menu();
 void endTurn();
-void rollAnimation();
+int rollAnimation();
 void cords(int x, int y);
 void playerSelect();
 void currentBoard();

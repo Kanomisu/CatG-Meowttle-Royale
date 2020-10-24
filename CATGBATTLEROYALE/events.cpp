@@ -5,10 +5,12 @@
 
 int backSpace[10] = { 0,2,5,7,10,15,20,50,58,69 };
 int forwardSpace[10] = { 1,3,6,8,11,16,21,51,59,70 };
+/*
 int restSpace[1] = { 2 };
 int fatigueSpace[1] = { 12 };
 int gambleSpace[1] = { 4 };
 int battleSpace[1] = { 9 };
+*/
 
 int rNum = 0;
 
@@ -75,17 +77,17 @@ void forward() {
 void rest() {
     switch (p_Cur) {
     case (0):
-        p_1_S = true;
+        p_Skipped[p_Cur] = true;
         p_Health[0] = p_Max_Health[0];
         break;
         ;
     case (1):
-        p_2_S = true;
+        p_Skipped[p_Cur] = true;
         p_Health[1] = p_Max_Health[1];
         break;
         ;
     case (2):
-        p_3_S = true;
+        p_Skipped[p_Cur] = true;
         p_Health[2] = p_Max_Health[2];
         break;
         ;
@@ -95,15 +97,15 @@ void rest() {
 void fatigue() {
 	switch (p_Cur) {
 	case (0):
-		p_1_S = true;
+        p_Skipped[p_Cur] = true;
 		break;
 		;
 	case (1):
-		p_2_S = true;
+        p_Skipped[p_Cur] = true;
 		break;
 		;
 	case (2):
-        p_3_S = true;
+        p_Skipped[p_Cur] = true;
         break;
 		;
 	}
@@ -132,13 +134,18 @@ void currentBoard() {
         //Vitatlity:
         //Luck::
         //Etc.
+    std::cout << "Current Turn: Player " << p_Cur << "\n" <<
+        "Space: " << p_Pos[p_Cur] << "\n" << 
+        "HP: " << p_S_V[p_Cur] << "/" << p_Max_Health[p_Cur] << "\n" <<
+        "Attack: " << p_S_A << "\n" << "Resistance: " << p_S_R << "\n" <<
+        "Luck: " << p_S_L << "\n";
 }
 
 int random() {
     return rand() % 5 + 1;
 }
 
-void rollAnimation() {
+int rollAnimation() {
     for (int i = 0; i <= 25; ++i) {
         rNum = random();
         std::system("cls");
@@ -147,6 +154,7 @@ void rollAnimation() {
         std::cout << rNum;
         Sleep(25);
     }
+    return rNum;
 }
 
 void checkSpace(int space) {
@@ -156,6 +164,7 @@ void checkSpace(int space) {
     else if (std::any_of(std::begin(forwardSpace), std::end(forwardSpace), [=](int n) {return n == space;})) {
         forward();
     }
+    /*
     else if (std::any_of(std::begin(restSpace), std::end(restSpace), [=](int n) {return n == space;})) {
         rest();
     }
@@ -168,4 +177,6 @@ void checkSpace(int space) {
     else if (std::any_of(std::begin(battleSpace), std::end(battleSpace), [=](int n) {return n == space;})) {
         battle();
     }
+    */
+
 }
