@@ -2,6 +2,8 @@
 #include <algorithm>
 #include <iostream>
 #include <windows.h>
+#include <cstdlib>
+#include <ctime>
 
 int backSpace[10] = { 0,2,5,7,10,15,20,50,58,69 };
 int forwardSpace[10] = { 1,3,6,8,11,16,21,51,59,70 };
@@ -135,11 +137,11 @@ void currentBoard() {
 }
 
 int random() {
-    return rand() % 5 + 1;
+    return srand((unsigned int)time(NULL)) % 5 + 1;
 }
 
 void rollAnimation() {
-    for (int i = 0; i <= 25; ++i) {
+    for (int i = 0; i <= 20; ++i) {
         rNum = random();
         std::system("cls");
         currentBoard();
