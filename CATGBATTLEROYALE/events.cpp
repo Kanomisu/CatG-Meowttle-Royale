@@ -83,7 +83,7 @@ void forward() {
 
 void rest() {
     p_Skipped[p_Cur] = true;
-    p_S_V[p_Cur] = true;
+    p_S_V[p_Cur] = p_Max_Health[p_Cur];
 }
 
 void fatigue() {
@@ -164,16 +164,19 @@ void sellSoul() {
             if (p_Cur == 0) {
                 if (p_Pos[0] < p_Pos[1] && p_Pos[0] < p_Pos[2]) {
                     ranSellSoul = true;
+                    soulDia();
                 }
             }
             else if (p_Cur == 1) {
                 if (p_Pos[1] < p_Pos[0] && p_Pos[1] < p_Pos[2]) {
                     ranSellSoul = true;
+                    soulDia();
                 }
             }
             else if (p_Cur == 2) {
                 if (p_Pos[2] < p_Pos[0] && p_Pos[2] < p_Pos[1]) {
                     ranSellSoul = true;
+                    soulDia();
                 }
             }
         }
@@ -340,5 +343,7 @@ void checkSpace(int space) {
 }
 
 void winConditions() {
-
+    if (p_Pos[p_Cur] >= 91) {
+        endTurn();
+    }
 }
