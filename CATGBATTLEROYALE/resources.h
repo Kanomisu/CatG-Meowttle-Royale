@@ -22,6 +22,8 @@ extern bool p_3_S;
 extern bool p_Skipped[];
 extern bool p_Finished[];
 
+extern int p_SellSoul[];
+
 extern int rNum; //Random Number
 
 void titleScreen();
@@ -31,4 +33,6 @@ int rollAnimation();
 void cords(int x, int y);
 void playerSelect();
 void currentBoard();
+void sellSoul();
 void checkSpace(int cSpace);
+extern int backSpace[];
