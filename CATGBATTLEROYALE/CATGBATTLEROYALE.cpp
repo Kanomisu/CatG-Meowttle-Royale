@@ -3,7 +3,8 @@
 #include <windows.h>
 #include "resources.h"
 #include <conio.h>
-
+#include <ctime>
+#include <stdlib.h> 
 using namespace std;
 
 /*
@@ -18,6 +19,9 @@ void playGame();
 void playerSelect();
 void roll();
 void turnStart();
+bool checkToEndGame();
+void endGame();
+void checkIfFinished();
 
 int main()
 {
@@ -40,7 +44,9 @@ void playGame() {
 			checkSpace(p_Pos[p_Cur]);
 		}
 		endTurn();
+		gameEnd = checkToEndGame();
 	}
+	endGame();
 
 
 
@@ -65,6 +71,8 @@ void setWindow(int Width, int Height)
 
 void roll() {
 	int amtMove;
+	int time_seed = time(NULL);
+	srand(time_seed);
 	std::cout << "Press any button to roll!!!";
 	int input = _getch();
 	if (input == 0xE0)
@@ -75,14 +83,20 @@ void roll() {
 	amtMove = rollAnimation();
 	cout << "\nYou rolled a " << amtMove << endl;
 	p_Pos[p_Cur] += amtMove;
+	checkIfFinished();
 	Sleep(25);
-	if (p_Pos[p_Cur] >= 91) 
+	cout << "Player " << p_Cur + 1 << " is now at space " << p_Pos[p_Cur] << endl;
+}
+
+void checkIfFinished() 
+{
+	if (p_Pos[p_Cur] >= 91)
 	{
 		p_Pos[p_Cur] = 91;
-		cout << "Congratulations, you have completed the board!!!";
-
+		cout << "Congratulations, you have completed the board!!!\n";
+		cout << "This game shall now come to a close...\n";
+		p_Finished[p_Cur] = true;
 	}
-	cout << "Player " << p_Cur + 1 << " is now at space " << p_Pos[p_Cur] << endl;
 }
 
 void turnStart() {
@@ -120,6 +134,33 @@ void endTurn() {
 	else {
 		p_Cur ++;
 	}
+}
+
+bool checkToEndGame()
+{
+	if (p_Finished[0] || p_Finished[1] || p_Finished[2])
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+void endGame()
+{
+	std::system("cls");
+	int totalStats[3];
+	cout << "And with that, our jounrey comes to an end!\n Let us see how well you all performed...\n";
+	for (int i = 0; i < p_Max; i++)
+	{
+		Sleep(3000);
+		totalStats[i] = player(i);
+	}
+	//program a check to see who got the bigger number
+	//The do a display to see who actually won
+	//that should be all lul
 }
 
 void playerSelect()

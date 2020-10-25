@@ -216,7 +216,7 @@ void soulDia() {
 
         if (p_Cur == 0) {
             if (pickedNum[0] == pickedNum[1] || pickedNum[0] == pickedNum[2]) {
-                std::cout << "Player 1 has successfully guessed the correct number!";
+                std::cout << "Player 1 has successfully guessed the correct number!\n[DEVIL] Good work, loyal servant of mine! The price shouldn't be too high for you...";
                 p_S_A[0] += (p_S_A[1] / 2);
                 p_S_A[1] = (p_S_A[1] / 2);
 
@@ -245,12 +245,12 @@ void soulDia() {
                 p_S_L[2] = (p_S_L[2] / 2);
             }
             else {
-                std::cout << "Player 1 has failed to guess the correct number!";
+                std::cout << "Player 1 has failed to guess the correct number!\n[DEVIL] That's a real shame aint it? Oh well, your punishment is now active";
             }
         }
         else if (p_Cur == 1) {
             if (pickedNum[1] == pickedNum[0] || pickedNum[1] == pickedNum[2]) {
-                std::cout << "Player 1 has successfully guessed the correct number!";
+                std::cout << "Player 2 has successfully guessed the correct number!\n[DEVIL] Good work, loyal servant of mine! The price shouldn't be too high for you...";
                 p_S_A[1] += (p_S_A[0] / 2);
                 p_S_A[0] = (p_S_A[0] / 2);
 
@@ -279,12 +279,12 @@ void soulDia() {
                 p_S_L[2] = (p_S_L[2] / 2);
             }
             else {
-                std::cout << "Player 2 has failed to guess the correct number!";
+                std::cout << "Player 2 has failed to guess the correct number!\n[DEVIL] That's a real shame aint it? Oh well, your punishment is now active";
             }
         }
         else if (p_Cur == 2) {
             if (pickedNum[2] == pickedNum[0] || pickedNum[2] == pickedNum[1]) {
-                std::cout << "Player 1 has successfully guessed the correct number!";
+                std::cout << "Player 3 has successfully guessed the correct number!\n[DEVIL] Good work, loyal servant of mine! The price shouldn't be too high for you...";
                 p_S_A[2] += (p_S_A[1] / 2);
                 p_S_A[1] = (p_S_A[1] / 2);
 
@@ -313,7 +313,7 @@ void soulDia() {
                 p_S_L[0] = (p_S_L[0] / 2);
             }
             else {
-                std::cout << "Player 3 has failed to guess the correct number!";
+                std::cout << "Player 3 has failed to guess the correct number!\n[DEVIL] That's a real shame aint it? Oh well, your punishment is now active";
             }
         }
 
@@ -329,6 +329,23 @@ void currentBoard() {
         "HP: " << p_Health[p_Cur] << "/" << p_S_V[p_Cur] << "\n" <<
         "Attack: " << p_S_A[p_Cur] << "\n" << "Resistance: " << p_S_R[p_Cur] << "\n" <<
         "Luck: " << p_S_L[p_Cur] << "\n";
+}
+
+int player(int cPlayer) {
+    int totalStats;
+    totalStats = p_Health[cPlayer] + p_S_V[cPlayer] + p_S_A[cPlayer] + p_S_R[cPlayer] + p_S_L[cPlayer];
+    std::cout << "Player " << cPlayer + 1 << "\n" <<
+        "HP: " << p_Health[cPlayer] << "/" << p_S_V[cPlayer] << "\n" <<
+        "Attack: " << p_S_A[cPlayer] << "\n" << "Resistance: " << p_S_R[cPlayer] << "\n" <<
+        "Luck: " << p_S_L[cPlayer] << "\n" << "Stat Total = " << totalStats << "\n";
+    if (p_FinishedFirst[cPlayer])
+    {
+        std::cout << "This player managed to finish first, +2 to his final score!!!!\n";
+        totalStats += 2;
+        std::cout << "There final score is now " << totalStats;
+    }
+    return totalStats;
+
 }
 
 int rollAnimation() {

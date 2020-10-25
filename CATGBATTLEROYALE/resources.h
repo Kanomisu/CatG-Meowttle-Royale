@@ -21,7 +21,7 @@ extern bool p_3_S;
 */
 extern bool p_Skipped[];
 extern bool p_Finished[];
-
+extern bool p_FinishedFirst[];
 extern int p_SellSoul[];
 
 extern int rNum; //Random Number
@@ -35,4 +35,5 @@ void playerSelect();
 void currentBoard();
 void sellSoul();
 void checkSpace(int cSpace);
+int player(int cPlayer);
 extern int backSpace[];
