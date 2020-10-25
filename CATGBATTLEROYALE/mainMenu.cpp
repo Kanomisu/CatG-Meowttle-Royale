@@ -109,10 +109,11 @@ void menu()
 		*/
 		if (y == 4)
 		{
-			system("CLS");
-			break;
+			exit(0);
 		}
-		
+		system("CLS");
+		y = 2;
+		input = ' ';
 	}
 }
 
