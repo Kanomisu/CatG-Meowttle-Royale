@@ -5,8 +5,6 @@
 #include <cstdlib>
 #include <ctime>
 
-int backSpace[10] = { 0,2,5,7,10,15,20,50,58,69 };
-int forwardSpace[10] = { 1,3,6,8,11,16,21,51,59,70 };
 /*
 int restSpace[1] = { 2 };
 int fatigueSpace[1] = { 12 };
@@ -18,10 +16,22 @@ int backSpace[8] = { 6, 18, 30, 42, 56, 68, 80, 90 };
 int forwardSpace[8] = { 2, 12, 24, 36, 48, 60, 72, 84 };
 int eventSpace[22] = { 3, 7, 11, 15, 19, 23, 27, 31, 35, 39, 43, 47, 51, 55, 59, 63, 67, 71, 75, 79, 83, 87 };
 
+int pickedNum[3] = { 0,0,0 }; //sell soul number picked
 
+bool ranSellSoul = false;
+
+int response = 0;
+int gamNum = 0;
 
 int rNum = 0;
 
+void back();
+void forward();
+void rest();
+void fatigue();
+void battle();
+void gamble();
+void soulDia();
 //back     1
 //forward  2
 //rest     3
@@ -36,103 +46,111 @@ int random() {
 
 
 void eventRandomizor() {
+    std::cout << "You have landed upon an event space, a random event shall now occur...\n";
     rNum = rand() % 6;
     switch(rNum) {
     case(0):
         back();
         break;
-        ;
     case(1):
         forward();
         break;
-        ;
     case(2):
         rest();
         break;
-        ;
     case(3):
         fatigue();
         break;
-        ;
     case(4):
         battle();
         break;
-        ;
     case(5):
         gamble();
         break;
-        ;
     }
 }
 
 void back() {
+    std::cout << "As you travelled, you tornado hit you! You were flung back 3 spaces!\n";
     if (p_Pos[p_Cur] >= 3) {
         p_Pos[p_Cur] -= 3;
     }
     else {
         p_Pos[p_Cur] = 0;
     }
+    std::cout << "You are now at space " << p_Pos[p_Cur] << "\n";
 }
 
 void forward() {
+    std::cout << "Upon your journey, you found a shortcut, you moved 3 spaces forward!\n";
     p_Pos[p_Cur] += 3;
+    std::cout << "You are now at space " << p_Pos[p_Cur] << "\n";
 }
 
 void rest() {
-    p_Skipped[p_Cur] = true;
-    p_S_V[p_Cur] = p_Max_Health[p_Cur];
+    //p_Skipped[p_Cur] = true;
+    std::cout << "You stumbble upon an inn to stay at. Your health has been fully replenished!\n";
+    p_Health[p_Cur] = p_S_V[p_Cur];
 }
 
 void fatigue() {
+    std::cout << "You find yourself weary, and take a short break. Your next turn has been skipped!\n";
     p_Skipped[p_Cur] = true;
 }
 
 void gamble() {
     system("CLS");
     currentBoard();
+    std::cout << "You have have been chosen for a small gamble, you will either gain or lose a stat depending on your answer...\n";
     std::cout << "Pick a stat you would like to improve. \n 1. Attack \n2. Vitality \n3. Resistance \n4. Luck\n";
     std::cin >> response;
     std::cout << "\nPick 1 or 2\n";
     std::cin >> gamNum;
     rNum = rand() % 2 + 1;
     if (rNum == gamNum) {
+        std::cout << "Congratulations you have chosen correctly!\n";
         switch (response) {
         case(1):
             p_S_A[p_Cur] += 1;
+            std::cout << "Attack +1! Your attack stat is now " << p_S_A[p_Cur] <<  "\n";
             break;
-            ;
         case(2):
             p_S_V[p_Cur] += 1;
+            std::cout << "Vitality +1! Your vitality stat is now " << p_S_V[p_Cur] << "\n";
             break;
-            ;
         case(3):
             p_S_R[p_Cur] += 1;
+            std::cout << "Resistance +1! Your resistance stat is now " << p_S_R[p_Cur] << "\n";
             break;
-            ;
         case(4):
-            p_S_L[p_Cur] -= 1;
+            p_S_L[p_Cur] += 1;
+            std::cout << "Luck +1! Your luck stat is now " << p_S_L[p_Cur] << "\n";
             break;
-            ;
         }
     }
     else {
+        std::cout << "Wrong number kiddo, you should've chosen " << rNum << "!\n";
         switch (response) {
         case(1):
             p_S_A[p_Cur] -= 1;
+            std::cout << "Attack -1! Your attack stat is now " << p_S_A[p_Cur] << "\n";
             break;
-            ;
         case(2):
             p_S_V[p_Cur] -= 1;
+            std::cout << "Vitality -1! Your vitality stat is now " << p_S_V[p_Cur] << "\n";
+            if (p_Health[p_Cur] > p_S_V[p_Cur])
+            {
+                p_Health[p_Cur] = p_S_V[p_Cur];
+            }
             break;
-            ;
         case(3):
             p_S_R[p_Cur] -= 1;
+            std::cout << "Resistance -1! Your resistance stat is now " << p_S_R[p_Cur] << "\n";
             break;
-            ;
         case(4):
             p_S_L[p_Cur] -= 1;
+            std::cout << "Luck -1! Your luck stat is now " << p_S_L[p_Cur] << "\n";
             break;
-            ;
         }
     }
 }

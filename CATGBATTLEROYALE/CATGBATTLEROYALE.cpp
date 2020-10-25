@@ -34,8 +34,11 @@ void playGame() {
 	while (!gameEnd)
 	{
 		turnStart();
-		roll();
-		checkSpace(p_Pos[p_Cur]);
+		if (!p_Skipped[p_Cur] || !p_Finished[p_Cur])
+		{
+			roll();
+			checkSpace(p_Pos[p_Cur]);
+		}
 		endTurn();
 	}
 
@@ -83,70 +86,28 @@ void roll() {
 }
 
 void turnStart() {
-<<<<<<< HEAD
-	switch(p_Cur) {
-		case (0):
-			if (p_Skipped[p_Cur]){
-				//player has been skipped
-				p_Skipped[p_Cur] = false;
-				endTurn();
-				break;
-			}
-			else if (p_Finished[p_Cur]) 
-			{
-				cout << "Player " << p_Cur << " has finsihed the board, proceeding to the next player...";
-			}
-			else {
-				//roll();
-				currentBoard();
-				break;
-			}
-			;
-		case (1):
-			if (p_Skipped[p_Cur]) {
-				//player has been skipped
-				p_Skipped[p_Cur] = false;
-				endTurn();
-				break;
-			}
-			else if (p_Finished[p_Cur])
-			{
-				cout << "Player " << p_Cur << " has finsihed the board, proceeding to the next player...";
-			}
-			else {
-				//roll();
-				currentBoard();
-				break;
-			}
-			;
-		case (2):
-			if (p_Skipped[p_Cur]) {
-				//player has been skipped
-				p_Skipped[p_Cur] = false;
-				endTurn();
-				break;
-			}
-			else if (p_Finished[p_Cur])
-			{
-				cout << "Player " << p_Cur << " has finsihed the board, proceeding to the next player...";
-			}
-			else {
-				//roll();
-				currentBoard();
-				break;
-			}
-=======
-	if (p_Skipped[p_Cur] == true) {
-		p_Skipped[p_Cur] = false;
-		endTurn();
->>>>>>> Nathan
+	if (p_Skipped[p_Cur]){
+		//player has been skipped
+		//p_Skipped[p_Cur] = false;
+		//endTurn();
+		cout << "Player " << p_Cur << "'s has been skipped, proceeding to the next player...";
+	}
+	else if (p_Finished[p_Cur]) 
+	{
+		cout << "Player " << p_Cur << " has finsihed the board, proceeding to the next player...";
+	}
+	else {
+		//roll();
+		currentBoard();
 	}
 	sellSoul(); //checks if we should ask to sell soul
 }
 
 void endTurn() {
 	cout << "Press any button to end your turn:";
-
+	if (p_Skipped[p_Cur] == true) {
+		p_Skipped[p_Cur] = false;
+	}
 	int input = _getch();
 	if (input == 0xE0)
 	{
@@ -188,51 +149,28 @@ void playerSelect()
 			p_S_V[i] = 3;
 			p_S_R[i] = 3;
 			p_S_L[i] = 1;
-<<<<<<< HEAD
-			//p_Max_Health[i] = 3;
-=======
->>>>>>> Nathan
 			p_Health[i] = 3;
-			p_S_V[i] = 3;
 			break;
 		case 2:
 			p_S_A[i] = 3;
 			p_S_V[i] = 4;
 			p_S_R[i] = 2;
 			p_S_L[i] = 1;
-<<<<<<< HEAD
-			//p_Max_Health[i] = 4;
 			p_Health[i] = 4;
-=======
-			p_Health[i] = 3;
-			p_S_V[i] = 3;
->>>>>>> Nathan
 			break;
 		case 3:
 			p_S_A[i] = 2;
 			p_S_V[i] = 4;
 			p_S_R[i] = 3;
 			p_S_L[i] = 1;
-<<<<<<< HEAD
-			//p_Max_Health[i] = 4;
 			p_Health[i] = 4;
-=======
-			p_Health[i] = 3;
-			p_S_V[i] = 3;
->>>>>>> Nathan
 			break;
 		default:
 			p_S_A[i] = 100;
 			p_S_V[i] = 100;
 			p_S_R[i] = 100;
 			p_S_L[i] = 100;
-<<<<<<< HEAD
-			//p_Max_Health[i] = 100;
 			p_Health[i] = 100;
-=======
-			p_Health[i] = 3;
-			p_S_V[i] = 3;
->>>>>>> Nathan
 			break;
 		}
 
