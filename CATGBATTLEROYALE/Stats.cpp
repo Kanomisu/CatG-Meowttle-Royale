@@ -11,9 +11,9 @@ int p_S_V[3] = { 0,0,0 }; //player vitality stat
 int p_S_R[3] = { 0,0,0 }; //player resistance stat
 int p_S_L[3] = { 0,0,0 }; //player luck stat
 
-int p_SellSoul[3] = { 0,0,0 }; //0 = they didn't sell their soul 1 = they did sell their soul
+bool p_SellSoul[3] = { false ,false ,false }; //0 = they didn't sell their soul 1 = they did sell their soul
 
-int p_Health[3] = { 100,100,100 }; //player health
+int p_Health[3] = { 1,1,1 }; //player health
 
 bool p_Skipped[3] = { false, false, false }; //Skip next turn of current player
 
@@ -21,7 +21,9 @@ bool p_Finished[3] = { false, false, false }; //Inicator when the player has fin
 
 bool p_FinishedFirst[3] = { false, false, false };//Indicates if the player was the first one to finish
 
-bool p_Winner[3] = { false, false, false };
+bool p_Winner[3] = { false, false, false }; //indicates who is the final winner
+
+int skipCount[3] = { 0, 0 , 0 }; //Count to make sure the player turn is skipped
 
 /*
 bool p_1_S = false; //Skip next turn of P1

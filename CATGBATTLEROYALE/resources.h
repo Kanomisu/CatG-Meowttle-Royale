@@ -14,6 +14,9 @@ extern int p_S_R[];
 extern int p_S_L[];
 
 extern int p_Health[];
+
+extern int skipCount[];
+
 /*
 extern bool p_1_S;
 extern bool p_2_S;
@@ -22,7 +25,7 @@ extern bool p_3_S;
 extern bool p_Skipped[];
 extern bool p_Finished[];
 extern bool p_FinishedFirst[];
-extern int p_SellSoul[];
+extern bool p_SellSoul[];
 
 extern int rNum; //Random Number
 

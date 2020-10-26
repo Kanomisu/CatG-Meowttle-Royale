@@ -118,9 +118,15 @@ void turnStart() {
 }
 
 void endTurn() {
-	cout << "Press any button to end your turn:";
+	cout << "Press any button to end your turn:\n";
 	if (p_Skipped[p_Cur] == true) {
-		p_Skipped[p_Cur] = false;
+		if (skipCount[p_Cur] == 0) {
+			skipCount[p_Cur]++;
+		}
+		else {
+			skipCount[p_Cur] = 0;
+			p_Skipped[p_Cur] = false;
+		}
 	}
 	int input = _getch();
 	if (input == 0xE0)
@@ -151,16 +157,37 @@ bool checkToEndGame()
 void endGame()
 {
 	std::system("cls");
-	int totalStats[3];
+	int totalStats[3] = { 0, 0, 0 };
 	cout << "And with that, our jounrey comes to an end!\n Let us see how well you all performed...\n";
-	for (int i = 0; i < p_Max; i++)
+	for (int i = 0; i <= p_Max; i++)
 	{
 		Sleep(3000);
 		totalStats[i] = player(i);
 	}
-	//program a check to see who got the bigger number
-	//The do a display to see who actually won
-	//that should be all lul
+
+	if (totalStats[0] > totalStats[1])
+	{
+		if (totalStats[0] > totalStats[2]) 
+		{
+			if (totalStats[1] > totalStats[2]){ cout << "Player 1 Wins!\nPlayer 2 is in second!\nPlayer 3 came in last."; }
+			else { cout << "Player 1 Wins!\nPlayer 3 is in seccond!\nPlayer 2 came in last."; }
+		}
+
+		else if (totalStats[0] < totalStats[2])
+		{
+			if (totalStats[0] > totalStats[1]) { cout << "Player 3 Wins!\nPlayer 1 is in second!\nPlayer 2 came in last."; }
+			else { cout << "Player 3 Wins!\nPlayer 2 is in seccond!\nPlayer 1 came in last."; }
+		}
+	}
+
+	if (totalStats[1] > totalStats[0])
+	{
+		if (totalStats[1] > totalStats[2])
+		{
+			if (totalStats[0] > totalStats[2]) { cout << "Player 2 Wins!\nPlayer 1 is in second!\nPlayer 3 came in last."; }
+			else { cout << "Player 2 Wins!\nPlayer 3 is in seccond!\nPlayer 1 came in last."; }
+		}
+	}
 }
 
 void playerSelect()

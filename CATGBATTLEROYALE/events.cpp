@@ -4,6 +4,7 @@
 #include <windows.h>
 #include <cstdlib>
 #include <ctime>
+#include <stdlib.h> 
 
 /*
 int restSpace[1] = { 2 };
@@ -29,9 +30,11 @@ void back();
 void forward();
 void rest();
 void fatigue();
-void battle();
+void battle(int monster);
 void gamble();
 void soulDia();
+void death();
+void statGiver(int enemyFaced);
 //back     1
 //forward  2
 //rest     3
@@ -44,10 +47,31 @@ int random() {
     return rand() % 5 + 1;
 }
 
-
 void eventRandomizor() {
-    std::cout << "You have landed upon an event space, a random event shall now occur...\n";
-    rNum = rand() % 6;
+    std::cout << 
+        "*******************************************************************************\n" <<
+        "          |                   |                  |                     |       \n" <<
+        " _________|________________.=''_;=.______________|_____________________|_______\n" <<
+        "|                   |  ,-'_,=''     `'=.|                  |                   \n" <<
+        "|___________________|__'=._o`'-._        `'=.______________|___________________\n" <<
+        "          |                `'=._o`'=._      _`'=._                     |       \n" <<
+        " _________|_____________________:=._o '=._.'_.-='''=.__________________|_______\n" <<
+        "|                   |    __.--' , ; `'=._o.' ,-'''-._ '.   |                   \n" <<
+        "|___________________|_._'  ,. .` ` `` ,  `'-._'-._   '. '__|___________________\n" <<
+        "          |           |o`'=._` , '` `; .'. ,  '-._'-._; ;              |       \n" <<
+        " _________|___________| ;`-.o`'=._; .' ` '`.'\\` . '-._ /_______________|_______\n" <<
+        "|                   | |o;    `'-.o`'=._``  '` ' ,__.--o;   |                   \n" <<
+        "|___________________|_| ;     (#) `-.o `'=.`_.--'_o.-; ;___|___________________\n" <<
+        "____/______/______/___|o;._    '      `'.o|o_.--'    ;o;____/______/______/____\n" <<
+        "/______/______/______/_'=._o--._        ; | ;        ; ;/______/______/______/_\n" <<
+        "____/______/______/______/__'=._o--._   ;o|o;     _._;o;____/______/______/____\n" <<
+        "/______/______/______/______/____'=._o._; | ;_.--'o.--'_/______/______/______/_\n" <<
+        "____/______/______/______/______/_____'=.o|o_.--''___/______/______/______/____\n" <<
+        "/______/______/______/______/______/______/______/______/______/______/______/_\n" <<
+        "*******************************************************************************\n";
+    std::cout << "\nYou have landed upon an event space, a random event shall now occur...\n";
+    Sleep(3000);
+    rNum = rand() % 9;
     switch(rNum) {
     case(0):
         back();
@@ -62,18 +86,59 @@ void eventRandomizor() {
         fatigue();
         break;
     case(4):
-        battle();
-        break;
-    case(5):
         gamble();
         break;
+    case(5):
+        battle(1);
+        break;
+    case(6):
+        battle(2);
+        break;
+    case(7):
+        battle(3);
+        break;
+    case(8):
+        battle(4);
+        break;
+    
     }
 }
 
 void back() {
+    std::cout <<
+        "               . '@(@@@@@@@)@. (@@) `  .   '     \n" <<
+        "     .  @@'((@@@@@@@@@@@)@@@@@)@@@@@@@)@         \n" <<
+        "     @@(@@@@@@@@@@))@@@@@@@@@@@@@@@@)@@` .       \n" <<
+        "  @.((@@@@@@@)(@@@@@@@@@@@@@@))@\\@@@@@@@@@)@@@  .\n" <<
+        " (@@@@@@@@@@@@@@@@@@)@@@@@@@@@@@\\\\@@)@@@@@@@@)   \n" <<
+        "(@@@@@@@@)@@@@@@@@@@@@@(@@@@@@@@//@@@@@@@@@) `   \n" <<
+        " .@(@@@@)##&&&&&(@@@@@@@@)::_=(@\\\\@@@@)@@ .   .' \n" <<
+        "   @@`(@@)###&&&&&!!;;;;;;::-_=@@\\\\@)@`@.        \n" <<
+        "   `   @@(@###&&&&!!;;;;;::-=_=@.@\\\\@@     '     \n" <<
+        "      `  @.#####&&&!!;;;::=-_= .@  \\\\            \n" <<
+        "            ####&&&!!;;::=_-        `            \n" <<
+        "             ###&&!!;;:-_=                       \n" <<
+        "              ##&&!;::_=                         \n" <<
+        "             ##&&!;:=                            \n" <<
+        "            ##&&!:-                              \n" <<
+        "           #&!;:-                                \n" <<
+        "          #&!;=                                  \n" <<
+        "          #&!-                                   \n" <<
+        "           #&=                                   \n" <<
+        "            #&-                                  \n" <<
+        "            \\\\#/'                                \n" <<
+        " ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n";
     std::cout << "As you travelled, you tornado hit you! You were flung back 3 spaces!\n";
-    if (p_Pos[p_Cur] >= 3) {
-        p_Pos[p_Cur] -= 3;
+    Sleep(3000);
+    int back = 3;
+    if (p_SellSoul[p_Cur])
+    {
+        std::cout << "[Devil] Remember kid, our deal? This will be twice as strong!\n";
+        back *= 2;
+    }
+
+    if (p_Pos[p_Cur] >= back) {
+        p_Pos[p_Cur] -= back;
     }
     else {
         p_Pos[p_Cur] = 0;
@@ -82,13 +147,65 @@ void back() {
 }
 
 void forward() {
-    std::cout << "Upon your journey, you found a shortcut, you moved 3 spaces forward!\n";
+    std::cout <<
+        "                                                 .; \n" <<
+        "                                               .`;' \n" <<
+        "                                           . ` ;;'  \n" <<
+        "                                  . ` `  `   ;;;'   \n" <<
+        "                                `       @  ;;;      \n" <<
+        "                             `            ;;;       \n" <<
+        "                           `            ;;;;        \n" <<
+        "                         `            ;;;;;.        \n" <<
+        "                       `           .;;;;;;**.       \n" <<
+        "                      `          ;`* .;;; `**.      \n" <<
+        "                 .  `           ;;`****.    '*.     \n" <<
+        "               '** `           ;;;;'****.    .      \n" <<
+        "             '****`            ;;;;;`***.           \n" <<
+        "           '*****`           ;;;;;;  `**.           \n" <<
+        "            ` **`          ;;;;;;;    .*            \n" <<
+        "             `*`         ;;;;;;;;                   \n" <<
+        "              `        ;;;;;;;;                     \n" <<
+        "              `      ;;;;;;;;                       \n" <<
+        "            `      ;;;;;;;                          \n" <<
+        "           `     ;;;;;;    . *                      \n" <<
+        "         `      ;;;;      ***                       \n" <<
+        "         .     ;;       ***                         \n" <<
+        "  * *    .    ;;      **                            \n" <<
+        "***  *    ` .;;     *                               \n" <<
+        "**        .****.       * *                          \n" <<
+        "*       . * ^^ *'.   *  ****                        \n" <<
+        "  * *               *     ****                      \n" <<
+        "***  *        *             ***                     \n" <<
+        "***           **                                    \n" <<
+        " *            ***                                   \n" <<
+        "              ***                                   \n" <<
+        "               **                                   \n";
+    Sleep(3000);
+    std::cout << "\nUpon your journey, you found a magical dolphin who offers to move you up 3 spaces! You moved 3 spaces forward!\n";
     p_Pos[p_Cur] += 3;
     std::cout << "You are now at space " << p_Pos[p_Cur] << "\n";
 }
 
 void rest() {
     //p_Skipped[p_Cur] = true;
+    std::cout <<
+
+        "                                   /\\                                \n" <<
+        "                              /\\  //\\\\                               \n" <<
+        "                       /\    //\\\\///\\\\\\        /\\                    \n" <<
+        "                      //\\\\  ///\\////\\\\\\\\  /\\  //\\\\                   \n" <<
+        "         /\\          /  ^ \\/^ ^/^  ^  ^ \\/^ \\/  ^ \\                  \n" <<
+        "        / ^\\    /\\  / ^   /  ^/ ^ ^ ^   ^\\ ^/  ^^  \\                 \n" <<
+        "       /^   \\  / ^\\/ ^ ^   ^ / ^  ^    ^  \\/ ^   ^  \\       *        \n" <<
+        "      /  ^ ^ \\/^  ^\\ ^ ^ ^   ^  ^   ^   ____  ^   ^  \\     /|\\       \n" <<
+        "     / ^ ^  ^ \\ ^  _\\___________________|  |_____^ ^  \\   /||o\\      \n" <<
+        "    / ^^  ^ ^ ^\\  /______________________________\\ ^ ^ \\ /|o|||\\     \n" <<
+        "   /  ^  ^^ ^ ^  /________________________________\\  ^  /|||||o|\\    \n" <<
+        "  /^ ^  ^ ^^  ^    ||___|___||||||||||||___|__|||      /||o||||||\\   \n" <<
+        " / ^   ^   ^    ^  ||___|___||||||||||||___|__|||          | |       \n" <<
+        "/ ^ ^ ^  ^  ^  ^   ||||||||||||||||||||||||||||||oooooooooo| |ooooooo\n" <<
+        "ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo\n";
+    Sleep(3000);
     std::cout << "You stumbble upon an inn to stay at. Your health has been fully replenished!\n";
     p_Health[p_Cur] = p_S_V[p_Cur];
 }
@@ -129,44 +246,63 @@ void gamble() {
         }
     }
     else {
+        int lose = 1;
+        if (p_SellSoul)
+        {
+            lose = 2;
+            std::cout << "[Devil] Rough luck buddy, our deal applies here too...\n";
+        }
         std::cout << "Wrong number kiddo, you should've chosen " << rNum << "!\n";
         switch (response) {
         case(1):
-            p_S_A[p_Cur] -= 1;
-            std::cout << "Attack -1! Your attack stat is now " << p_S_A[p_Cur] << "\n";
+            p_S_A[p_Cur] -= lose;
+            std::cout << "Attack -" << lose <<"! Your attack stat is now " << p_S_A[p_Cur] << "\n";
             break;
         case(2):
-            p_S_V[p_Cur] -= 1;
-            std::cout << "Vitality -1! Your vitality stat is now " << p_S_V[p_Cur] << "\n";
+            p_S_V[p_Cur] -= lose;
+            std::cout << "Vitality -" << lose << "! Your vitality stat is now " << p_S_V[p_Cur] << "\n";
             if (p_Health[p_Cur] > p_S_V[p_Cur])
             {
                 p_Health[p_Cur] = p_S_V[p_Cur];
             }
             break;
         case(3):
-            p_S_R[p_Cur] -= 1;
-            std::cout << "Resistance -1! Your resistance stat is now " << p_S_R[p_Cur] << "\n";
+            p_S_R[p_Cur] -= lose;
+            std::cout << "Resistance -" << lose << "! Your resistance stat is now " << p_S_R[p_Cur] << "\n";
             break;
         case(4):
-            p_S_L[p_Cur] -= 1;
-            std::cout << "Luck -1! Your luck stat is now " << p_S_L[p_Cur] << "\n";
+            p_S_L[p_Cur] -= lose;
+            std::cout << "Luck -" << lose << "! Your luck stat is now " << p_S_L[p_Cur] << "\n";
             break;
         }
     }
 }
 
-void battle() {
+//Fight Option
+void battle(int monster) {
     system("CLS");
     currentBoard();
-    std::cout << "\n\nYou came across some sort of creature!\n\nWhat would you like to do?\n1. Fight \n2. Flee\n";
+    std::cout << "\n\nYou came across some sort of creature!\n";
+    if (monster == 1)
+    {
+        std::cout << "\n\nIt was a shield slime! Defeating it will boost your Resistance by 1, but lower your hp by 1!\n";
+    }
+    else if (monster == 2)
+    {
+        std::cout << "\n\nIt was a slime o' Luck! Defeating it will boost your luck by 1, but lower your hp by 1!\n";
+    }
+    else if (monster == 3)
+    {
+        std::cout << "\n\nIt was a Slime of gains! Defeating it will boost your Vit by 1, but lower your hp by 2!\n";
+    }
+    else if (monster == 4)
+    {
+        std::cout << "\n\nIt was a power slime! Defeating it will boost your attack by 1, but lower your hp by 2!\n";
+    }
+    std::cout <<"\nWhat would you like to do?\n1. Fight \n2. Flee\n";
     std::cin >> response;
     if (response == 1) {
-        if (p_SellSoul[p_Cur] == 1) {
-
-        }
-        else {
-
-        }
+        statGiver(monster);
     }
     else {
         std::cout << "\n\nYou cowarded behind a rock...";
@@ -200,10 +336,29 @@ void sellSoul() {
 
 void soulDia() {
     system("CLS");
+    std::cout <<
+        "\n"<<
+        "	      (                      )            \n" <<
+        "         |\\    _,--------._    / |           \n" <<
+        "         | `.,'            `. /  |	          \n" <<
+        "         `  '              ,-'   '           \n" <<
+        "          \\/_         _   (     /            \n" <<
+        "          (,-.`.    ,',-.`. `__,'            \n" <<
+        "           |/#\\ ),-','#\\`= ,'.` |            \n" <<
+        "           `._/)  -'.\\_,'   ) ))|            \n" <<
+        "	       /  (_.)\\     .   -'//              \n" <<
+        "	      (  /\\____/\\    ) )`'\\               \n" <<
+        " 	       \\ |V----V||  ' ,    \\              \n" <<
+        "	        |`- -- -'   ,'   \\  \\      _____  \n" <<
+        " 	 ___    |         .'    \\ \\  `._,-'     `-\n" <<
+        "	    `.__,`---^---'       \\ ` -'           \n" <<
+        "	       -.______  \\ . /  ______,-          \n" <<
+        "	               `.     ,'                  \n";
+    Sleep(3000);
     std::cout << "\n\n[DEVIL] Hello there player " << p_Cur + 1 << " it seems like you are in need of help... How about I propose an offer you can't resist! If you are able to correctly guess an opponent's number you shall receive half of the other players stats in exchange for doubling any negative actions that happen to you.\n\n 1. Yes \n 2. No";
     std::cin >> response;
     if (response == 1) {
-        p_SellSoul[p_Cur] = 1;
+        p_SellSoul[p_Cur] = true;
         system("CLS");
         std::cout << "Player 1 please input a number\n";
         std::cin >> pickedNum[0];
@@ -377,5 +532,69 @@ void checkSpace(int space) {
 void winConditions() {
     if (p_Pos[p_Cur] >= 91) {
         endTurn();
+    }
+}
+
+/*Gives player their stats after battle
+Enemy's ID's are as follows:
+1. Shield Slime
+2. Slime O'Luck
+3. Slime of Gains
+4. Power Slime
+*/
+
+void statGiver(int enemyFaced) {
+    /*
+    int resistanceGiven = 1;
+    int luckGiven = 2;
+    int vitalityGiven = 3;
+    int strengthGiven = 4;
+    int statGiven = 0;
+    */
+    int dTaken = 1;
+    if (p_SellSoul[p_Cur])
+    {
+        dTaken *= 2;
+        std::cout << "\n[Devil] Remember our deal? You will now take double the damage...\n";
+    }
+    switch (enemyFaced)
+    {
+    case 1:
+        p_S_R[p_Cur] += 1;
+        p_Health[p_Cur] -= dTaken;
+        std::cout << "\n Your resistance is now " << p_S_R[p_Cur];
+        break;
+    case 2:
+        p_S_L[p_Cur] += 1;
+        p_Health[p_Cur] -= dTaken;
+        std::cout << "\n Your luck is now " << p_S_L[p_Cur];
+        break;
+    case 3:
+        p_S_V[p_Cur] += 1;
+        p_Health[p_Cur] -= dTaken*2;
+        std::cout << "\n Your vitality is now " << p_S_V[p_Cur];
+        break;
+    case 4:
+        p_S_A[p_Cur] += 1;
+        p_Health[p_Cur] -= dTaken*2;
+        std::cout << "\n Your attack is now " << p_S_A[p_Cur];
+        break;
+    }
+    if (p_Health[p_Cur] <= 0)
+    {
+        p_Health[p_Cur] = 0;
+    }
+    std::cout << "\nYour hp is now " << p_Health[p_Cur] << "\n";
+    death();
+}
+
+
+void death() {
+    if (p_Health[p_Cur] <= 0)
+    {
+        std::cout << "Oh no, your health has reached 0! You lost the battle, and in order to regain your strength, you must skip a turn! (Your health is now fully restored)\n";
+        p_Health[p_Cur] = p_S_V[p_Cur];
+        p_Skipped[p_Cur] = true;
+
     }
 }

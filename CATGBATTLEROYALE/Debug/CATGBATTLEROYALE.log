@@ -1,2 +1,8 @@
+<<<<<<< HEAD
 ﻿  mainMenu.cpp
   CATGBATTLEROYALE.vcxproj -> C:\Users\Ryan Dinh\Desktop\Important\School\Y1\CatG-Meowttle-Royale\CatG-Meowttle-Royale\CATGBATTLEROYALE\Debug\CATGBATTLEROYALE.exe
+=======
+﻿  events.cpp
+D:\Code\CatG-Meowttle-Royale\CATGBATTLEROYALE\events.cpp(195,9): warning C4129: ' ': unrecognized character escape sequence
+  CATGBATTLEROYALE.vcxproj -> D:\Code\CatG-Meowttle-Royale\CATGBATTLEROYALE\Debug\CATGBATTLEROYALE.exe
+>>>>>>> master
