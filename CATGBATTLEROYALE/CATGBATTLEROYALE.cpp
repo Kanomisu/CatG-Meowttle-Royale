@@ -9,7 +9,7 @@ using namespace std;
 
 /*
 This is our game for our first GDW project!
-CATG Battle royale is textbased rpg!
+CATG Battle Royale is textbased rpg!
 Date: 10/20/2020
 Authors: Ricardo Prato, Ryan Dinh, Timothy Loudon, Nathan Tyborski, Kieran Lockyer
 */

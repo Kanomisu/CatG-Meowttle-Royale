@@ -412,3 +412,21 @@ void statGiver(int enemyFaced) {
         break;
     }
 }
+
+void battleLost() {
+    if (p_Cur == 1 && p_Health[p_Cur] <= 0)
+    {
+        p_Skipped[1] = { true };
+        p_Health[p_Cur] = p_S_V[p_Cur];
+    }
+    else if (p_Cur == 2 && p_Health <= 0) 
+    {
+        p_Skipped[2] = { true };
+        p_Health[p_Cur] = p_S_V[p_Cur];
+    }
+    else if (p_Cur == 3 && p_Health <= 0)
+    {
+        p_Skipped[3] = { true };
+        p_Health[p_Cur] = p_S_V[p_Cur];
+    }
+}

@@ -17,7 +17,7 @@ int p_Health[3] = { 100,100,100 }; //player health
 
 bool p_Skipped[3] = { false, false, false }; //Skip next turn of current player
 
-bool p_Finished[3] = { false, false, false }; //Inicator when the player has finished the board.
+bool p_Finished[3] = { false, false, false }; //Indicator when the player has finished the board.
 
 bool p_FinishedFirst[3] = { false, false, false };//Indicates if the player was the first one to finish
 

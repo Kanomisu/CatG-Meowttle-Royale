@@ -1,9 +1,6 @@
-﻿  board.cpp
-  CATGBATTLEROYALE.cpp
+﻿  CATGBATTLEROYALE.cpp
 C:\Users\Tim\Desktop\GitKraken\CatG-Meowttle-Royale\CATGBATTLEROYALE\CATGBATTLEROYALE.cpp(74,16): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
-  events.cpp
-  mainMenu.cpp
   Stats.cpp
+  events.cpp
   Generating Code...
-  LINK : C:\Users\Tim\Desktop\GitKraken\CatG-Meowttle-Royale\CATGBATTLEROYALE\Debug\CATGBATTLEROYALE.exe not found or not built by the last incremental link; performing full link
   CATGBATTLEROYALE.vcxproj -> C:\Users\Tim\Desktop\GitKraken\CatG-Meowttle-Royale\CATGBATTLEROYALE\Debug\CATGBATTLEROYALE.exe
