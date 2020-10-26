@@ -1,4 +1,5 @@
 ﻿  CATGBATTLEROYALE.cpp
+<<<<<<< HEAD
 D:\Code\CatG-Meowttle-Royale\CATGBATTLEROYALE\CATGBATTLEROYALE.cpp(74,16): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
   Stats.cpp
   board.cpp
@@ -7,3 +8,7 @@ D:\Code\CatG-Meowttle-Royale\CATGBATTLEROYALE\events.cpp(177,9): warning C4129: 
   mainMenu.cpp
   Generating Code...
   CATGBATTLEROYALE.vcxproj -> D:\Code\CatG-Meowttle-Royale\CATGBATTLEROYALE\Debug\CATGBATTLEROYALE.exe
+=======
+C:\Users\thedi\Desktop\Visual studio programs\CatG-Meowttle-Royale\CATGBATTLEROYALE\CATGBATTLEROYALE.cpp(74,16): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
+  CATGBATTLEROYALE.vcxproj -> C:\Users\thedi\Desktop\Visual studio programs\CatG-Meowttle-Royale\CATGBATTLEROYALE\Debug\CATGBATTLEROYALE.exe
+>>>>>>> ending
