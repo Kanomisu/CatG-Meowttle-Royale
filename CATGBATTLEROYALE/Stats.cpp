@@ -21,7 +21,9 @@ bool p_Finished[3] = { false, false, false }; //Inicator when the player has fin
 
 bool p_FinishedFirst[3] = { false, false, false };//Indicates if the player was the first one to finish
 
-bool p_Winner[3] = { false, false, false };
+bool p_Winner[3] = { false, false, false }; //indicates who is the final winner
+
+int skipCount[3] = { 0, 0 , 0 }; //Count to make sure the player turn is skipped
 
 /*
 bool p_1_S = false; //Skip next turn of P1

@@ -1,6 +1,9 @@
 ﻿  CATGBATTLEROYALE.cpp
-D:\Code\CatG-Meowttle-Royale\CATGBATTLEROYALE\CATGBATTLEROYALE.cpp(68,16): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
+D:\Code\CatG-Meowttle-Royale\CATGBATTLEROYALE\CATGBATTLEROYALE.cpp(74,16): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
+  Stats.cpp
+  board.cpp
   events.cpp
+D:\Code\CatG-Meowttle-Royale\CATGBATTLEROYALE\events.cpp(177,9): warning C4129: ' ': unrecognized character escape sequence
   mainMenu.cpp
   Generating Code...
   CATGBATTLEROYALE.vcxproj -> D:\Code\CatG-Meowttle-Royale\CATGBATTLEROYALE\Debug\CATGBATTLEROYALE.exe

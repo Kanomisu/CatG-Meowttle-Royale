@@ -14,6 +14,8 @@ extern int p_S_R[];
 extern int p_S_L[];
 
 extern int p_Health[];
+
+extern int skipCount[];
 /*
 extern bool p_1_S;
 extern bool p_2_S;

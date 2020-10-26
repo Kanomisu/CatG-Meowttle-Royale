@@ -120,7 +120,13 @@ void turnStart() {
 void endTurn() {
 	cout << "Press any button to end your turn:";
 	if (p_Skipped[p_Cur] == true) {
-		p_Skipped[p_Cur] = false;
+		if (skipCount[p_Cur] == 0) {
+			skipCount[p_Cur]++;
+		}
+		else {
+			skipCount[p_Cur] = 0;
+			p_Skipped[p_Cur] = false;
+		}
 	}
 	int input = _getch();
 	if (input == 0xE0)
