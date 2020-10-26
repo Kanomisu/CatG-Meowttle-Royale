@@ -45,7 +45,7 @@ int random() {
 }
 
 
-void eventRandomizor() {
+void eventRandomizer() {
     std::cout << "You have landed upon an event space, a random event shall now occur...\n";
     rNum = rand() % 6;
     switch(rNum) {
@@ -155,6 +155,7 @@ void gamble() {
     }
 }
 
+//Fight Option
 void battle() {
     system("CLS");
     currentBoard();
@@ -369,7 +370,7 @@ void checkSpace(int space) {
         forward();
     }
     else if (std::any_of(std::begin(eventSpace), std::end(eventSpace), [=](int n) {return n == space;})) {
-        eventRandomizor();
+        eventRandomizer();
     }
 
 }
@@ -377,5 +378,26 @@ void checkSpace(int space) {
 void winConditions() {
     if (p_Pos[p_Cur] >= 91) {
         endTurn();
+    }
+}
+
+/*Gives player their stats after battle
+Enemy's ID's are as follows:
+1. Shield Slime
+2. Slime O'Luck
+3. Slime of Gains
+4. Power Slime
+*/
+
+void statGiver(int enemyFaced) {
+    int resistanceGiven = 1;
+    int luckGiven = 1;
+    int vitalityGiven = 1;
+    int strengthGiven = 1;
+
+    switch (enemyFaced)
+    {
+    case 1:
+
     }
 }
