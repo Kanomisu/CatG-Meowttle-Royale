@@ -391,13 +391,24 @@ Enemy's ID's are as follows:
 
 void statGiver(int enemyFaced) {
     int resistanceGiven = 1;
-    int luckGiven = 1;
-    int vitalityGiven = 1;
-    int strengthGiven = 1;
+    int luckGiven = 2;
+    int vitalityGiven = 3;
+    int strengthGiven = 4;
+    int statGiven = 0;
 
     switch (enemyFaced)
     {
     case 1:
-
+        p_S_R[p_Cur] += 1;
+        break;
+    case 2:
+        p_S_L[p_Cur] += 1;
+        break;
+    case 3:
+        p_S_V[p_Cur] += 1;
+        break;
+    case 4:
+        p_S_A[p_Cur] += 1;
+        break;
     }
 }
