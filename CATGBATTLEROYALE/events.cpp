@@ -72,6 +72,7 @@ void eventRandomizor() {
     std::cout << "\nYou have landed upon an event space, a random event shall now occur...\n";
     Sleep(3000);
     rNum = rand() % 9;
+    //rNum = 3; lul we had a bug where it wasn't skipping properly, it fixed itself for some reason 
     switch(rNum) {
     case(0):
         back();
@@ -219,10 +220,32 @@ void gamble() {
     system("CLS");
     currentBoard();
     std::cout << "You have have been chosen for a small gamble, you will either gain or lose a stat depending on your answer...\n";
-    std::cout << "Pick a stat you would like to improve. \n 1. Attack \n2. Vitality \n3. Resistance \n4. Luck\n";
-    std::cin >> response;
-    std::cout << "\nPick 1 or 2\n";
-    std::cin >> gamNum;
+    while (true)
+    {
+        std::cout << "Pick a stat you would like to improve. \n 1. Attack \n2. Vitality \n3. Resistance \n4. Luck\n";
+        std::cin >> response;
+        if (response < 1 || response > 4)
+        {
+            std::cout << "That's not an option!!!!\n";
+        }
+        else
+        {
+            break;
+        }
+    }
+    while (true)
+    {
+        std::cout << "\nPick 1 or 2\n";
+        std::cin >> gamNum;
+        if (gamNum < 1 || gamNum > 2)
+        {
+            std::cout << "That's not an option!!!!\n";
+        }
+        else
+        {
+            break;
+        }
+    }
     rNum = rand() % 2 + 1;
     if (rNum == gamNum) {
         std::cout << "Congratulations you have chosen correctly!\n";
@@ -247,7 +270,7 @@ void gamble() {
     }
     else {
         int lose = 1;
-        if (p_SellSoul)
+        if (p_SellSoul[p_Cur])
         {
             lose = 2;
             std::cout << "[Devil] Rough luck buddy, our deal applies here too...\n";
@@ -299,8 +322,19 @@ void battle(int monster) {
     {
         std::cout << "\n\nIt was a power slime! Defeating it will boost your attack by 1, but lower your hp by 2!\n";
     }
-    std::cout <<"\nWhat would you like to do?\n1. Fight \n2. Flee\n";
-    std::cin >> response;
+    while (true)
+    {
+        std::cout << "\nWhat would you like to do?\n1. Fight \n2. Flee\n";
+        std::cin >> response;
+        if (response < 1 || response > 2)
+        {
+            std::cout << "That's not an option!!!!\n";
+        }
+        else
+        {
+            break;
+        }
+    }
     if (response == 1) {
         statGiver(monster);
     }
@@ -355,19 +389,62 @@ void soulDia() {
         "	       -.______  \\ . /  ______,-          \n" <<
         "	               `.     ,'                  \n";
     Sleep(3000);
-    std::cout << "\n\n[DEVIL] Hello there player " << p_Cur + 1 << " it seems like you are in need of help... How about I propose an offer you can't resist! If you are able to correctly guess an opponent's number you shall receive half of the other players stats in exchange for doubling any negative actions that happen to you.\n\n 1. Yes \n 2. No";
-    std::cin >> response;
+    std::cout << "\n\n[DEVIL] Hello there player " << p_Cur + 1 << " it seems like you are in need of help... How about I propose an offer you can't resist! If you are able to correctly guess an opponent's number you shall receive half of the other players stats in exchange for doubling any negative actions that happen to you.\n";
+    while (true)
+    {
+        std::cout << "\n 1. Yes \n 2. No";
+        std::cin >> response;
+        if (response < 1 || response > 2)
+        {
+            std::cout << "\n[DEVIL] I said 1 or 2, read properly next time knucklehead!";
+        }
+        else
+        {
+            break;
+        }
+
+    }
     if (response == 1) {
         p_SellSoul[p_Cur] = true;
         system("CLS");
-        std::cout << "Player 1 please input a number\n";
-        std::cin >> pickedNum[0];
+        while (true) {
+            std::cout << "Player 1 please input a number between 1 - 10\n";
+            std::cin >> pickedNum[0];
+            if (pickedNum[0] < 1 || pickedNum[0] > 10)
+            {
+                std::cout << "[DEVIL] Heyheyhey, 1-10 man. Lets try this again...\n";
+            }
+            else
+            {
+                break;
+            }
+        }
         system("CLS");
-        std::cout << "Player 2 please input a number\n";
-        std::cin >> pickedNum[1];
+        while (true) {
+            std::cout << "Player 2 please input a number between 1 - 10\n";
+            std::cin >> pickedNum[1];
+            if (pickedNum[1] < 1 || pickedNum[1] > 10)
+            {
+                std::cout << "[DEVIL] Heyheyhey, 1-10 man. Lets try this again...\n";
+            }
+            else
+            {
+                break;
+            }
+        }
         system("CLS");
-        std::cout << "Player 3 please input a number\n";
-        std::cin >> pickedNum[2];
+        while (true) {
+            std::cout << "Player 3 please input a number between 1 - 10\n";
+            std::cin >> pickedNum[2];
+            if (pickedNum[2] < 1 || pickedNum[2] > 10)
+            {
+                std::cout << "[DEVIL] Heyheyhey, 1-10 man. Lets try this again...\n";
+            }
+            else
+            {
+                break;
+            }
+        }
 
         if (p_Cur == 0) {
             if (pickedNum[0] == pickedNum[1] || pickedNum[0] == pickedNum[2]) {

@@ -38,7 +38,7 @@ void playGame() {
 	while (!gameEnd)
 	{
 		turnStart();
-		if (!p_Skipped[p_Cur] || !p_Finished[p_Cur])
+ 		if (!p_Skipped[p_Cur])
 		{
 			roll();
 			checkSpace(p_Pos[p_Cur]);
@@ -104,11 +104,11 @@ void turnStart() {
 		//player has been skipped
 		//p_Skipped[p_Cur] = false;
 		//endTurn();
-		cout << "Player " << p_Cur << "'s has been skipped, proceeding to the next player...";
+		cout << "Player " << p_Cur + 1 << "'s has been skipped, proceeding to the next player...";
 	}
 	else if (p_Finished[p_Cur]) 
 	{
-		cout << "Player " << p_Cur << " has finsihed the board, proceeding to the next player...";
+		cout << "Player " << p_Cur + 1 << " has finsihed the board, proceeding to the next player...";
 	}
 	else {
 		//roll();
@@ -169,14 +169,26 @@ void endGame()
 	{
 		if (totalStats[0] > totalStats[2]) 
 		{
-			if (totalStats[1] > totalStats[2]){ cout << "Player 1 Wins!\nPlayer 2 is in second!\nPlayer 3 came in last."; }
-			else { cout << "Player 1 Wins!\nPlayer 3 is in seccond!\nPlayer 2 came in last."; }
+			if (totalStats[1] > totalStats[2])
+			{
+				cout << "Player 1 Wins!\nPlayer 2 is in second!\nPlayer 3 came in last."; 
+			}
+			else 
+			{ 
+				cout << "Player 1 Wins!\nPlayer 3 is in seccond!\nPlayer 2 came in last."; 
+			}
 		}
 
 		else if (totalStats[0] < totalStats[2])
 		{
-			if (totalStats[0] > totalStats[1]) { cout << "Player 3 Wins!\nPlayer 1 is in second!\nPlayer 2 came in last."; }
-			else { cout << "Player 3 Wins!\nPlayer 2 is in seccond!\nPlayer 1 came in last."; }
+			if (totalStats[0] > totalStats[1]) 
+			{ 
+				cout << "Player 3 Wins!\nPlayer 1 is in second!\nPlayer 2 came in last."; 
+			}
+			else 
+			{
+				cout << "Player 3 Wins!\nPlayer 2 is in seccond!\nPlayer 1 came in last."; 
+			}
 		}
 	}
 
@@ -184,15 +196,33 @@ void endGame()
 	{
 		if (totalStats[1] > totalStats[2])
 		{
-			if (totalStats[0] > totalStats[2]) { cout << "Player 2 Wins!\nPlayer 1 is in second!\nPlayer 3 came in last."; }
-			else { cout << "Player 2 Wins!\nPlayer 3 is in seccond!\nPlayer 1 came in last."; }
+			if (totalStats[0] > totalStats[2]) 
+			{ 
+				cout << "Player 2 Wins!\nPlayer 1 is in second!\nPlayer 3 came in last."; 
+			}
+			else 
+			{ 
+				cout << "Player 2 Wins!\nPlayer 3 is in seccond!\nPlayer 1 came in last."; 
+			}
+
+		}
+		else if (totalStats[0] < totalStats[2])
+		{
+			if (totalStats[0] > totalStats[1])
+			{
+				cout << "Player 3 Wins!\nPlayer 1 is in second!\nPlayer 2 came in last.";
+			}
+			else
+			{
+				cout << "Player 3 Wins!\nPlayer 2 is in seccond!\nPlayer 1 came in last.";
+			}
 		}
 	}
 }
 
 void playerSelect()
 {
-	int selection;
+	int selection = 0;
 	for (int i = 0; i <= p_Max; i++)
 	{
 		system("CLS");
@@ -234,11 +264,14 @@ void playerSelect()
 			p_Health[i] = 4;
 			break;
 		default:
-			p_S_A[i] = 100;
-			p_S_V[i] = 100;
-			p_S_R[i] = 100;
-			p_S_L[i] = 100;
-			p_Health[i] = 100;
+			p_S_A[i] = 1;
+			p_S_V[i] = 1;
+			p_S_R[i] = 1;
+			p_S_L[i] = 1;
+			p_Health[i] = 1;
+			cout << "Hey kid, you can't be inputting numbers that aren't allowed, input 1-3 next time!!!!!\n";
+			Sleep(5000);
+			i--;
 			break;
 		}
 
