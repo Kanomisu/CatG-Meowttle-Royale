@@ -25,7 +25,7 @@ extern bool p_3_S;
 extern bool p_Skipped[];
 extern bool p_Finished[];
 extern bool p_FinishedFirst[];
-extern int p_SellSoul[];
+extern bool p_SellSoul[];
 
 extern int rNum; //Random Number
 

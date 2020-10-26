@@ -118,7 +118,7 @@ void turnStart() {
 }
 
 void endTurn() {
-	cout << "Press any button to end your turn:";
+	cout << "Press any button to end your turn:\n";
 	if (p_Skipped[p_Cur] == true) {
 		if (skipCount[p_Cur] == 0) {
 			skipCount[p_Cur]++;
